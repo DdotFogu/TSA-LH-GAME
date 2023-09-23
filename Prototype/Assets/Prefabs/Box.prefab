@@ -121,7 +121,7 @@ Transform:
   - {fileID: 9143144705951572780}
   - {fileID: 1475227505}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &363222830832841756
 SpriteRenderer:
@@ -201,7 +201,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &363222830832841758
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedbc28d4245df4459ed1354f49fc72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stasisIcon: {fileID: 0}
+  stasisIcon: {fileID: 3221096339736541953}
   lockState: 0
   cam: {fileID: 0}
   lastVelocity: {x: 0, y: 0}
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0674d5954c70f34298bcfcd3d37df34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  telekinesisIcon: {fileID: 0}
+  telekinesisIcon: {fileID: 1475227503}
   cam: {fileID: 0}
   tele: 0
 --- !u!1 &3221096339736541953
@@ -318,7 +318,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3221096339736541953}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.185}
   m_LocalScale: {x: 0.13287674, y: 0.13287674, z: 0.13287674}
   m_ConstrainProportionsScale: 0
   m_Children: []

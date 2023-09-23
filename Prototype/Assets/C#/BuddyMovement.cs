@@ -22,7 +22,7 @@ public class BuddyMovement : MonoBehaviour
     [SerializeField] Vector2 wall2Distance;
     [SerializeField] Vector2 wall2BoxSize;
 
-    private void Update() {
+    private void FixedUpdate() {
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         HandelMovement();
         StateSetter();
@@ -51,6 +51,9 @@ public class BuddyMovement : MonoBehaviour
             }
         }
         if(buddyState == "Owl"){
+            if(gameObject.GetComponent<Rigidbody2D>().velocity.y > 1){
+                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(gameObject.GetComponent<Rigidbody2D>().velocity.x, 0);
+            }
             gameObject.GetComponent<Rigidbody2D>().gravityScale = 0.05f;
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMovement * moveSpeed * Time.deltaTime, gameObject.GetComponent<Rigidbody2D>().velocity.y);
         }

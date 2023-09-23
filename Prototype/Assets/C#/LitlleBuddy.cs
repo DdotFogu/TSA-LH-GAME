@@ -8,7 +8,9 @@ public class LitlleBuddy : MonoBehaviour
     [SerializeField] private GameObject buddyPrefab;
     [SerializeField] private GameObject vircam;
     [SerializeField] private bool abilityOn;
+    [SerializeField] private KeyCode resetKey;
     [SerializeField] private KeyCode buddyKey;
+    [SerializeField] private Vector2 buddyPos;
     private void Start() {
         abilityOn = false;
         buddyPrefab.SetActive(false);
@@ -26,6 +28,14 @@ public class LitlleBuddy : MonoBehaviour
                 buddyPrefab.SetActive(false);
             }
         }
+
+        if(Input.GetKeyDown(resetKey)){
+            buddyPrefab.transform.position = gameObject.transform.position;
+        }
+
+        if(abilityOn == true){
+            buddyPos = buddyPrefab.transform.position;
+        }
     }
     public void HandelCamera(){
         var vcam = vircam.GetComponent<CinemachineVirtualCamera>();
@@ -40,7 +50,12 @@ public class LitlleBuddy : MonoBehaviour
     private void ActiveBuddy(){
         buddyPrefab.SetActive(true);
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        buddyPrefab.transform.position = gameObject.transform.position;
+        if(buddyPos == new Vector2(0, 0)){
+            buddyPrefab.transform.position = gameObject.transform.position;
+        }
+        else{
+            buddyPrefab.transform.position = buddyPos;   
+        }
         gameObject.GetComponent<Movement>().enabled = false;
     }
 }

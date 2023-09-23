@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 951841739}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -208,5 +208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buddyPrefab: {fileID: 0}
+  vircam: {fileID: 0}
   abilityOn: 0
+  resetKey: 304
   buddyKey: 306
+  buddyPos: {x: 0, y: 0}
