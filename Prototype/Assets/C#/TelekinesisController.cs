@@ -18,15 +18,17 @@ public class TelekinesisController : MonoBehaviour
     }
 
     private void OnMouseOver() {
-        UpdateTelekinesisIcon();
-        if(Input.GetMouseButton(0)){
+        if(GameObject.Find("Player").GetComponent<AbilityController>().telekenisis == true){
+            UpdateTelekinesisIcon();
+            if(Input.GetMouseButton(0)){
             gameObject.tag = "Nonmoveable";
             tele = true;
             gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
             gameObject.transform.position = mousePos;
-        }
-        else{
+            }
+            else{
             gameObject.tag = "Moveable";
+            }
         }
     }
 

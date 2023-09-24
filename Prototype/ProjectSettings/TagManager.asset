@@ -44,3 +44,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Box
+    uniqueID: 3804946393
+    locked: 0
+  - name: Icon
+    uniqueID: 312258361
+    locked: 0
+  - name: Player
+    uniqueID: 2478631007
+    locked: 0

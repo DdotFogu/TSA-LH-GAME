@@ -26,17 +26,19 @@ public class StasisControll : MonoBehaviour
     }
 
     private void OnMouseOver() {
-        if(lockState == false){
-            UpdateStasisIcon();
-        }
-
-        if(Input.GetKeyDown(KeyCode.E)){
+        if(GameObject.Find("Player").GetComponent<AbilityController>().stasis == true){
             if(lockState == false){
-                lockState = true;
+            UpdateStasisIcon();
             }
+
+            if(Input.GetKeyDown(KeyCode.E)){
+                if(lockState == false){
+                lockState = true;
+                }
             else{
                 lockState = false;
             }
+        }
         }
     }
 
@@ -45,15 +47,17 @@ public class StasisControll : MonoBehaviour
     }
 
     private void StateController(){
-        if(lockState == true){
-            gameObject.tag = "Nonmoveable";
-            gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-            stasisIcon.GetComponent<SpriteRenderer>().enabled = true;
-            stasisIcon.transform.position = gameObject.transform.position;
-        }
-        else
-        {
-            gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+        if(GameObject.Find("Player").GetComponent<AbilityController>().stasis == true){
+            if(lockState == true){
+                gameObject.tag = "Nonmoveable";
+                gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+                stasisIcon.GetComponent<SpriteRenderer>().enabled = true;
+                stasisIcon.transform.position = gameObject.transform.position;
+            }
+            else
+            {
+                gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+            }
         }
     }
 
@@ -63,8 +67,10 @@ public class StasisControll : MonoBehaviour
 
     private void UpdateStasisIcon()
     {
-        Vector2 trueHeight = gameObject.GetComponent<SpriteRenderer>().bounds.extents;
-        stasisIcon.transform.position = gameObject.transform.position + Vector3.up * (trueHeight.y + iconOffsetY);
-        stasisIcon.GetComponent<SpriteRenderer>().enabled = false;
+        if(GameObject.Find("Player").GetComponent<AbilityController>().stasis == true){
+            Vector2 trueHeight = gameObject.GetComponent<SpriteRenderer>().bounds.extents;
+            stasisIcon.transform.position = gameObject.transform.position + Vector3.up * (trueHeight.y + iconOffsetY);
+            stasisIcon.GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 }

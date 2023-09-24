@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3461801006312305014}
   - component: {fileID: 3461801006312305000}
   - component: {fileID: 951841739}
+  - component: {fileID: 1906564410}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -213,3 +214,21 @@ MonoBehaviour:
   resetKey: 304
   buddyKey: 306
   buddyPos: {x: 0, y: 0}
+  buddyIcon: {fileID: 0}
+  ab: {fileID: 1906564410}
+--- !u!114 &1906564410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3461801006312305011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84b02a37eb319b942895f010867c9d4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  telekenisis: 1
+  stasis: 1
+  invertGravity: 1
+  littleBuddy: 1

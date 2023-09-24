@@ -12,16 +12,20 @@ public class GravityController : MonoBehaviour
 
     private void Update() {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        StateController();
+        if(GameObject.Find("Player").GetComponent<AbilityController>().invertGravity == true){
+            StateController();
+        }
     }
 
     private void OnMouseOver() {
-        if(Input.GetKeyDown(KeyCode.R) && gameObject.tag == "Moveable"){
-            if(gravityState == false){
-                gravityState = true;
-            }
-            else{
-                gravityState = false;
+        if(GameObject.Find("Player").GetComponent<AbilityController>().invertGravity == true){
+                if(Input.GetKeyDown(KeyCode.R) && gameObject.tag == "Moveable"){
+                if(gravityState == false){
+                    gravityState = true;
+                }
+                else{
+                    gravityState = false;
+                }
             }
         }
     }
