@@ -6,6 +6,7 @@ using Cinemachine;
 public class BuddyMovement : MonoBehaviour
 {
     [SerializeField] private string buddyState;
+    private Animator ani;
 
     [Header("Movement")]
     [SerializeField] float moveSpeed;
@@ -21,6 +22,10 @@ public class BuddyMovement : MonoBehaviour
     [SerializeField] Vector2 wallBoxSize;
     [SerializeField] Vector2 wall2Distance;
     [SerializeField] Vector2 wall2BoxSize;
+
+    private void Start(){
+        ani = gameObject.GetComponent<Animator>();
+    }
 
     private void FixedUpdate() {
         horizontalMovement = Input.GetAxisRaw("Horizontal");

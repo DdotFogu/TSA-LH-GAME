@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class LevelHandler : MonoBehaviour
 {
     public bool open;
+    public int num;
+    [SerializeField] private int qouta;
     private Animator ani;
     public KeyCode interactKey;
 
@@ -19,6 +21,13 @@ public class LevelHandler : MonoBehaviour
         }
         else{
             ani.SetBool("OpenState", false);
+        }
+
+        if(num == qouta){
+            OpenDoor();
+        }
+        else{
+            CloseDoor();
         }
     }
 
@@ -46,3 +55,5 @@ public class LevelHandler : MonoBehaviour
         SceneManager.LoadScene(nextScenceIndex);
     }
 }
+
+
