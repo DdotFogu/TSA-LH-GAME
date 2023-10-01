@@ -10,7 +10,7 @@ public class PressurePlate : MonoBehaviour
     {
         if (col.collider.CompareTag("Player") || col.collider.CompareTag("LittleBuddy"))
         {
-            door.GetComponent<LevelHandler>().num += 1;
+            door.GetComponent<LevelHandler>().num++;
         }
     }
 
@@ -18,7 +18,7 @@ public class PressurePlate : MonoBehaviour
     {
         if (col.collider.CompareTag("Player") || col.collider.CompareTag("LittleBuddy"))
         {
-            door.GetComponent<LevelHandler>().num -= 1;
+            door.GetComponent<LevelHandler>().num--;
         }
     }
 }

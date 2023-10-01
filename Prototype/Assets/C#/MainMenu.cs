@@ -25,4 +25,8 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(levelIndex);
     }
 
+
+    public void LoadSandBox(){
+        StartCoroutine(LoadNextLevel(2));
+    }
 }
