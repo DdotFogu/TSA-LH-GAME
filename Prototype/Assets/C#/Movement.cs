@@ -23,6 +23,9 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        if(Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, groundLayer)){
+            Debug.Log("On Ground");
+        }
         horizontalMovement = Input.GetAxisRaw("Horizontal");
     }
 

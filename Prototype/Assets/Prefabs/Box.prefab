@@ -121,7 +121,7 @@ Transform:
   - {fileID: 9143144705951572780}
   - {fileID: 1475227505}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &363222830832841756
 SpriteRenderer:
@@ -162,7 +162,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -490020903
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.764151, g: 0.43919617, b: 0.32079923, a: 1}
@@ -187,7 +187,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 30
+  m_Mass: 20
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 10
@@ -291,13 +291,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   telekinesisIcon: {fileID: 1475227503}
-  cam: {fileID: 0}
-  Player:
-    serializedVersion: 2
-    m_Bits: 64
-  Box:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!1 &3221096339736541953
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +362,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 312258361
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b49fcc3e49eab41458bcf913d53f657b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

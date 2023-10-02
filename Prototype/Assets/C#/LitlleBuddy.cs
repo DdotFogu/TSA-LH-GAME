@@ -35,23 +35,33 @@ public class LitlleBuddy : MonoBehaviour
                 }
             }
 
+            if(abilityOn == true){
+                buddyPos = buddyPrefab.transform.position;
+            }
+
             if(Input.GetKeyDown(resetKey)){
                 buddyPrefab.transform.position = gameObject.transform.position;
             }
+        }
 
-            if(abilityOn == true){
-                ab.telekenisis = false;
-                ab.stasis = false;
-                ab.invertGravity = false;
-                buddyPos = buddyPrefab.transform.position;
-            }
-            else{
-                ab.telekenisis = true;
-                ab.stasis = true;
-                ab.invertGravity = true;
-            }
+        if(Input.GetKeyDown(buddyKey)){
+            HandlePowers();
         }
     }
+
+    public void HandlePowers(){
+        if(abilityOn == true){
+            ab.telekenisis = false;
+            ab.stasis = false;
+            ab.invertGravity = false;
+        }
+        else{
+            ab.telekenisis = true;
+            ab.stasis = true;
+            ab.invertGravity = true;
+        }
+    }
+
     public void HandelCamera(){
         var vcam = vircam.GetComponent<CinemachineVirtualCamera>();
         if(buddyPrefab.activeInHierarchy){

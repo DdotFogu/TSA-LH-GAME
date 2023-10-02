@@ -59,7 +59,7 @@ public class BuddyMovement : MonoBehaviour
             if(gameObject.GetComponent<Rigidbody2D>().velocity.y > 1){
                 gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(gameObject.GetComponent<Rigidbody2D>().velocity.x, 0);
             }
-            gameObject.GetComponent<Rigidbody2D>().gravityScale = 0.05f;
+            gameObject.GetComponent<Rigidbody2D>().gravityScale = 0.08f;
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalMovement * moveSpeed * Time.deltaTime, gameObject.GetComponent<Rigidbody2D>().velocity.y);
         }
     }
