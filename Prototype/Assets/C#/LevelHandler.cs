@@ -9,10 +9,14 @@ public class LevelHandler : MonoBehaviour
     public int num;
     [SerializeField] private int qouta;
     private Animator ani;
+    public Animator transition;
     public KeyCode interactKey;
+    public GameObject interactIcon;
+
 
     void Start(){
         ani = gameObject.GetComponent<Animator>();
+        interactIcon.SetActive(false);
     }
 
     void Update(){
@@ -41,12 +45,25 @@ public class LevelHandler : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col){
         if(open == true && col.tag == "Player" && Input.GetKey(interactKey)){
-            NextLevel();
+            StartCoroutine(NextLevel());
+        }
+        if(col.CompareTag("Player") && open == true){
+            interactIcon.SetActive(true);
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D col){
+        if(col.CompareTag("Player") && open == true){
+            interactIcon.SetActive(false);
         }
     }
 
 
-    void NextLevel(){
+    IEnumerator NextLevel(){
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1f);
+
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextScenceIndex = currentSceneIndex + 1;
         if (nextScenceIndex == SceneManager.sceneCountInBuildSettings){

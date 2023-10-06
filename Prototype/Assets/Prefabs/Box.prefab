@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 1905208895}
   - component: {fileID: 1905208896}
   - component: {fileID: 4858262272199014436}
+  - component: {fileID: 704708448}
   m_Layer: 7
   m_Name: Box
   m_TagString: Moveable
@@ -121,7 +122,7 @@ Transform:
   - {fileID: 9143144705951572780}
   - {fileID: 1475227505}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &363222830832841756
 SpriteRenderer:
@@ -275,9 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3d6546dce8a834db883d394001f9ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityState: 0
   cam: {fileID: 0}
-  normalGravity: 10
 --- !u!114 &4858262272199014436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +290,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   telekinesisIcon: {fileID: 1475227503}
+--- !u!114 &704708448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363222830832841759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eae3b7fb7eec1b4c8b2e7f70827a24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3221096339736541953
 GameObject:
   m_ObjectHideFlags: 0

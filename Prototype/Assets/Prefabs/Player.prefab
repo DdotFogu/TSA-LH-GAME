@@ -36,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3461801006312305012
 SpriteRenderer:
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54fbb17dd2d3548429f197abb1d67a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallMultiplier: 4
+  fallMultiplier: 6
   lowJumpMultipiler: 2
 --- !u!114 &951841739
 MonoBehaviour:

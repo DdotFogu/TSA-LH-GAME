@@ -57,6 +57,7 @@ public class StasisControll : MonoBehaviour
             else
             {
                 gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             }
         }
     }

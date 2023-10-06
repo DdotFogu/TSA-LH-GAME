@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TelekinesisController : MonoBehaviour
 {
-    private bool dragging = false;
+    public bool dragging = false;
     public GameObject telekinesisIcon;
     private Vector3 offset;
     private float normalGravity;
@@ -26,10 +26,13 @@ public class TelekinesisController : MonoBehaviour
         dragging = true;
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+        GameObject.Find("Player").GetComponent<Movement>().enabled = false;
+        GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity = new Vector2(0, GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity.y);
     }
 
     private void OnMouseUp(){
         gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
+        GameObject.Find("Player").GetComponent<Movement>().enabled = true;
         gameObject.GetComponent<Rigidbody2D>().gravityScale = normalGravity;
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         dragging = false;

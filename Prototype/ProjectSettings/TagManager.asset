@@ -45,6 +45,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 2879287757
+    locked: 0
   - name: UI
     uniqueID: 3033400121
     locked: 0
@@ -56,4 +59,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2478631007
+    locked: 0
+  - name: Lava
+    uniqueID: 2606274281
     locked: 0
