@@ -8,7 +8,7 @@ public class PressurePlate : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.collider.CompareTag("Player") || col.collider.CompareTag("LittleBuddy"))
+        if (col.collider.CompareTag("Player") || col.collider.CompareTag("LittleBuddy") || col.collider.CompareTag("Moveable"))
         {
             door.GetComponent<LevelHandler>().num++;
         }
@@ -16,7 +16,7 @@ public class PressurePlate : MonoBehaviour
 
     public void OnCollisionExit2D(Collision2D col)
     {
-        if (col.collider.CompareTag("Player") || col.collider.CompareTag("LittleBuddy"))
+        if (col.collider.CompareTag("Player") || col.collider.CompareTag("LittleBuddy") || col.collider.CompareTag("Moveable"))
         {
             door.GetComponent<LevelHandler>().num--;
         }

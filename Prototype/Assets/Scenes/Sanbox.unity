@@ -3165,6 +3165,14 @@ PrefabInstance:
       propertyPath: buddyPrefab
       value: 
       objectReference: {fileID: 1123373351}
+    - target: {fileID: 1906564410, guid: 6a792b171c15fdf4999136a57195cfd5, type: 3}
+      propertyPath: stasis
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906564410, guid: 6a792b171c15fdf4999136a57195cfd5, type: 3}
+      propertyPath: littleBuddy
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3461801006312305011, guid: 6a792b171c15fdf4999136a57195cfd5, type: 3}
       propertyPath: m_Name
       value: Player
