@@ -10,6 +10,7 @@ public class StasisControll : MonoBehaviour
     public Vector2 lastVelocity;
     private Vector2 mousePos;
     private const float iconOffsetY = 0.5f;
+    public LayerMask groundLayer;
 
     private void Start() {
         stasisIcon.GetComponent<SpriteRenderer>().enabled = false;
@@ -26,7 +27,7 @@ public class StasisControll : MonoBehaviour
     }
 
     private void OnMouseOver() {
-        if(GameObject.Find("Player").GetComponent<AbilityController>().stasis == true){
+        if(GameObject.Find("Player").GetComponent<AbilityController>().stasis == true && !Physics2D.Linecast(GameObject.Find("Player").transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), groundLayer)){
             if(lockState == false){
             UpdateStasisIcon();
             }
@@ -56,6 +57,7 @@ public class StasisControll : MonoBehaviour
             }
             else
             {
+                gameObject.tag = "Moveable";
                 gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
                 gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             }

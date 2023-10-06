@@ -8,6 +8,7 @@ public class TelekinesisController : MonoBehaviour
     public GameObject telekinesisIcon;
     private Vector3 offset;
     private float normalGravity;
+    public LayerMask groundLayer;
 
     void Start(){
         telekinesisIcon.GetComponent<SpriteRenderer>().enabled = false;
@@ -18,16 +19,24 @@ public class TelekinesisController : MonoBehaviour
         if(dragging && GameObject.Find("Player").GetComponent<AbilityController>().telekenisis == true){
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
         }
+
+        if(Physics2D.Linecast(GameObject.Find("Player").transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), groundLayer)){
+            gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
+            GameObject.Find("Player").GetComponent<Movement>().enabled = true;
+            dragging = false;
+        }
     }
 
     private void OnMouseDown(){
-        offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-        dragging = true;
-        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-        gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
-        GameObject.Find("Player").GetComponent<Movement>().enabled = false;
-        GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity = new Vector2(0, GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity.y);
+        if(!Physics2D.Linecast(GameObject.Find("Player").transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), groundLayer)){
+            offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+            dragging = true;
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+            GameObject.Find("Player").GetComponent<Movement>().enabled = false;
+            GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity = new Vector2(0, GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity.y);
+        }
     }
 
     private void OnMouseUp(){
@@ -39,7 +48,9 @@ public class TelekinesisController : MonoBehaviour
     }
 
     private void OnMouseOver(){
-        UpdateTelekinesisIcon();
+        if(!Physics2D.Linecast(GameObject.Find("Player").transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), groundLayer)){
+            UpdateTelekinesisIcon();
+        }
     }
 
     private void OnMouseExit() {

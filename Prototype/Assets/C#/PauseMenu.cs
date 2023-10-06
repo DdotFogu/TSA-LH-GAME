@@ -43,6 +43,10 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("should work");
         StartCoroutine(LoadMenu());
     }
+
+    public void ReloadScene(){
+        StartCoroutine(Reload());
+    }
     
     public IEnumerator LoadMenu(){
         Resume();
@@ -52,5 +56,16 @@ public class PauseMenu : MonoBehaviour
         yield return new WaitForSeconds(wait);
 
         SceneManager.LoadScene(0);
+    }
+
+    public IEnumerator Reload(){
+        Resume();
+
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(wait);
+
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

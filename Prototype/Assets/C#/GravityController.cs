@@ -9,6 +9,7 @@ public class GravityController : MonoBehaviour
     private Vector2 mousePos;
     private bool gravityState;
     private const float iconOffsetY = 0.5f;
+    public LayerMask groundLayer;
 
     private void Update() {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -19,7 +20,7 @@ public class GravityController : MonoBehaviour
     }
 
     private void OnMouseOver() {
-        if(GameObject.Find("Player").GetComponent<AbilityController>().invertGravity == true){
+        if(GameObject.Find("Player").GetComponent<AbilityController>().invertGravity == true && !Physics2D.Linecast(GameObject.Find("Player").transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), groundLayer)){
                 if(Input.GetKeyDown(KeyCode.R) && gameObject.tag == "Moveable"){
                 if(gravityState == false){
                     gameObject.GetComponent<Rigidbody2D>().gravityScale = -normalGravity;
