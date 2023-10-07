@@ -9,6 +9,7 @@ public class TelekinesisController : MonoBehaviour
     private Vector3 offset;
     private float normalGravity;
     public LayerMask groundLayer;
+    public Animator playerAni;
 
     void Start(){
         telekinesisIcon.GetComponent<SpriteRenderer>().enabled = false;
@@ -29,6 +30,7 @@ public class TelekinesisController : MonoBehaviour
 
     private void OnMouseDown(){
         if(!Physics2D.Linecast(GameObject.Find("Player").transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), groundLayer)){
+            playerAni.SetBool("Telekensis", true);
             offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
             gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
             dragging = true;
@@ -40,6 +42,7 @@ public class TelekinesisController : MonoBehaviour
     }
 
     private void OnMouseUp(){
+        playerAni.SetBool("Telekensis", false);
         gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
         GameObject.Find("Player").GetComponent<Movement>().enabled = true;
         gameObject.GetComponent<Rigidbody2D>().gravityScale = normalGravity;
