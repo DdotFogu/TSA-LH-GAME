@@ -586,10 +586,18 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1818696023}
+    - target: {fileID: 1905208895, guid: c7f4308a933ae7e4cafcf938736f013f, type: 3}
+      propertyPath: playerAni
+      value: 
+      objectReference: {fileID: 1216350981}
     - target: {fileID: 1905208896, guid: c7f4308a933ae7e4cafcf938736f013f, type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 1818696023}
+    - target: {fileID: 1905208896, guid: c7f4308a933ae7e4cafcf938736f013f, type: 3}
+      propertyPath: playerAni
+      value: 
+      objectReference: {fileID: 1216350981}
     - target: {fileID: 363222830832841747, guid: c7f4308a933ae7e4cafcf938736f013f, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -1160,10 +1168,18 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1818696023}
+    - target: {fileID: 1905208895, guid: c7f4308a933ae7e4cafcf938736f013f, type: 3}
+      propertyPath: playerAni
+      value: 
+      objectReference: {fileID: 1216350981}
     - target: {fileID: 1905208896, guid: c7f4308a933ae7e4cafcf938736f013f, type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 1818696023}
+    - target: {fileID: 1905208896, guid: c7f4308a933ae7e4cafcf938736f013f, type: 3}
+      propertyPath: playerAni
+      value: 
+      objectReference: {fileID: 1216350981}
     - target: {fileID: 363222830832841747, guid: c7f4308a933ae7e4cafcf938736f013f, type: 3}
       propertyPath: m_RootOrder
       value: 13

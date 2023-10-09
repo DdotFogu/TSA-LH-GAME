@@ -7,6 +7,7 @@ public class StasisControll : MonoBehaviour
     [SerializeField] private GameObject stasisIcon;
     [SerializeField] private bool lockState;
     [SerializeField] private Camera cam;
+    [SerializeField] private Animator playerAni;
     public Vector2 lastVelocity;
     private Vector2 mousePos;
     private const float iconOffsetY = 0.5f;
@@ -34,9 +35,11 @@ public class StasisControll : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.Q)){
                 if(lockState == false){
+                StartCoroutine(Animation("Stasis"));
                 lockState = true;
                 }
             else{
+                StartCoroutine(Animation("Stasis2"));
                 lockState = false;
             }
         }
@@ -45,6 +48,16 @@ public class StasisControll : MonoBehaviour
 
     private void SetVelocity(){
         lastVelocity = gameObject.GetComponent<Rigidbody2D>().velocity;
+    }
+
+    private IEnumerator Animation(string triggerName){
+        GameObject.Find("Player").GetComponent<Movement>().enabled = false;
+        GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity = new Vector2(0, GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity.y);
+        playerAni.SetTrigger(triggerName);
+
+        yield return new WaitForSeconds(0.5f);
+
+        GameObject.Find("Player").GetComponent<Movement>().enabled = true;
     }
 
     private void StateController(){
