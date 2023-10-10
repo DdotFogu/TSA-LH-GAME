@@ -260,6 +260,7 @@ MonoBehaviour:
   buddyKey: 306
   buddyPos: {x: 0, y: 0}
   buddyIcon: {fileID: 0}
+  playerAni: {fileID: 0}
   ab: {fileID: 1906564410}
 --- !u!114 &1906564410
 MonoBehaviour:
