@@ -12,18 +12,22 @@ public class LitlleBuddy : MonoBehaviour
     [SerializeField] private KeyCode buddyKey;
     [SerializeField] private Vector2 buddyPos;
     public GameObject buddyIcon;
+    public Animator playerAni;
     public AbilityController ab;
+
     private void Start() {
         abilityOn = false;
         buddyPrefab.SetActive(false);
         buddyIcon.SetActive(false);
     }
+    
     private void Update() {
         if(GameObject.Find("Player").GetComponent<AbilityController>().littleBuddy == true){
             HandelCamera();
             if(Input.GetKeyDown(buddyKey)){
                 if(abilityOn == false){
                     abilityOn = true;
+                    gameObject.GetComponent<Movement>().enabled = false;
                     ActiveBuddy();
                 }
                 else{
@@ -56,6 +60,7 @@ public class LitlleBuddy : MonoBehaviour
             ab.invertGravity = false;
         }
         else{
+            playerAni.SetInteger("AnimalState", 0);
             ab.telekenisis = true;
             ab.stasis = true;
             ab.invertGravity = true;

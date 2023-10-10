@@ -6,6 +6,7 @@ using Cinemachine;
 public class BuddyMovement : MonoBehaviour
 {
     [SerializeField] private string buddyState;
+    public Animator playerAni;
     private Animator ani;
 
     [Header("Movement")]
@@ -66,12 +67,15 @@ public class BuddyMovement : MonoBehaviour
 
     public void StateSetter(){
         if(Physics2D.BoxCast(transform.position, groundBoxSize, 0, -transform.up, groundDistance, groundLayer)){
+            playerAni.SetInteger("AnimalState", 1);
             buddyState = "Fox";
         }
         else{
+            playerAni.SetInteger("AnimalState", 3);
             buddyState = "Owl";
         }
         if(Physics2D.BoxCast(transform.position, wallBoxSize, 0, transform.right, wallDistance.x, groundLayer) || Physics2D.BoxCast(transform.position, wall2BoxSize, 0, transform.right, wall2Distance.x, groundLayer)){
+            playerAni.SetInteger("AnimalState", 2);
             buddyState = "Frog";
         }
     }

@@ -244,6 +244,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4335036162770379676, guid: dec246766a2e8e64d8ed6681036da093, type: 3}
+      propertyPath: Playerani
+      value: 
+      objectReference: {fileID: 1216350981}
+    - target: {fileID: 4335036162770379676, guid: dec246766a2e8e64d8ed6681036da093, type: 3}
+      propertyPath: playerAni
+      value: 
+      objectReference: {fileID: 1216350981}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -756,6 +764,10 @@ PrefabInstance:
       propertyPath: buddyIcon
       value: 
       objectReference: {fileID: 1494114238}
+    - target: {fileID: 951841739, guid: 6a792b171c15fdf4999136a57195cfd5, type: 3}
+      propertyPath: playerAni
+      value: 
+      objectReference: {fileID: 1216350981}
     - target: {fileID: 951841739, guid: 6a792b171c15fdf4999136a57195cfd5, type: 3}
       propertyPath: buddyPrefab
       value: 
