@@ -24,12 +24,12 @@ public class GravityController : MonoBehaviour
         if(GameObject.Find("Player").GetComponent<AbilityController>().invertGravity == true && !Physics2D.Linecast(GameObject.Find("Player").transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), groundLayer)){
                 if(Input.GetKeyDown(KeyCode.R) && gameObject.tag == "Moveable"){
                 if(gravityState == false){
-                    StartCoroutine(Animation());
+                    StartCoroutine(Animation("Gravity"));
                     gameObject.GetComponent<Rigidbody2D>().gravityScale = -normalGravity;
                     gravityState = true;
                 }
                 else{
-                    StartCoroutine(Animation());
+                    StartCoroutine(Animation("Gravity2"));
                     gameObject.GetComponent<Rigidbody2D>().gravityScale = normalGravity;
                     gravityState = false;
                 }
@@ -37,10 +37,10 @@ public class GravityController : MonoBehaviour
         }
     }
 
-    private IEnumerator Animation(){
+    private IEnumerator Animation(string triggerName){
         GameObject.Find("Player").GetComponent<Movement>().enabled = false;
         GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity = new Vector2(0, GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity.y);
-        playerAni.SetTrigger("Gravity");
+        playerAni.SetTrigger(triggerName);
 
         yield return new WaitForSeconds(0.5f);
 
