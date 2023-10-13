@@ -3022,6 +3022,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 467833677, guid: aa9e84a2a796d7f4db4e7126448ccaad, type: 3}
+      propertyPath: m_text
+      value: 'SandBox
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 675024631965521664, guid: aa9e84a2a796d7f4db4e7126448ccaad, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3321,6 +3327,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8606702075286337997, guid: 6a792b171c15fdf4999136a57195cfd5, type: 3}
+      propertyPath: ab
+      value: 
+      objectReference: {fileID: 3461801007368298875}
+    - target: {fileID: 8606702075286337997, guid: 6a792b171c15fdf4999136a57195cfd5, type: 3}
+      propertyPath: vircam
+      value: 
+      objectReference: {fileID: 506149175}
+    - target: {fileID: 8606702075286337997, guid: 6a792b171c15fdf4999136a57195cfd5, type: 3}
+      propertyPath: buddyKey
+      value: 306
+      objectReference: {fileID: 0}
+    - target: {fileID: 8606702075286337997, guid: 6a792b171c15fdf4999136a57195cfd5, type: 3}
+      propertyPath: resetKey
+      value: 304
+      objectReference: {fileID: 0}
+    - target: {fileID: 8606702075286337997, guid: 6a792b171c15fdf4999136a57195cfd5, type: 3}
+      propertyPath: buddyIcon
+      value: 
+      objectReference: {fileID: 35426218}
+    - target: {fileID: 8606702075286337997, guid: 6a792b171c15fdf4999136a57195cfd5, type: 3}
+      propertyPath: playerAni
+      value: 
+      objectReference: {fileID: 3461801007368298874}
+    - target: {fileID: 8606702075286337997, guid: 6a792b171c15fdf4999136a57195cfd5, type: 3}
+      propertyPath: buddyPrefab
+      value: 
+      objectReference: {fileID: 1123373351}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3331,6 +3365,17 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 7305061150461655471, guid: 6a792b171c15fdf4999136a57195cfd5, type: 3}
   m_PrefabInstance: {fileID: 3461801007368298873}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3461801007368298875 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1906564410, guid: 6a792b171c15fdf4999136a57195cfd5, type: 3}
+  m_PrefabInstance: {fileID: 3461801007368298873}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84b02a37eb319b942895f010867c9d4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3674126378548519995
 PrefabInstance:
   m_ObjectHideFlags: 0

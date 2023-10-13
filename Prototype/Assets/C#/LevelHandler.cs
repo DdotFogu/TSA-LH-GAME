@@ -20,6 +20,10 @@ public class LevelHandler : MonoBehaviour
     }
 
     void Update(){
+        if(num < 0){
+            num = 0;
+        }
+
         if(open == true){
             ani.SetBool("OpenState", true);
         }

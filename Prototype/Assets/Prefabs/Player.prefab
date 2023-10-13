@@ -118,8 +118,9 @@ GameObject:
   - component: {fileID: 418543928250616124}
   - component: {fileID: 3461801006312305014}
   - component: {fileID: 3461801006312305000}
-  - component: {fileID: 951841739}
   - component: {fileID: 1906564410}
+  - component: {fileID: 8606702075286337997}
+  - component: {fileID: 1886914086}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -226,7 +227,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 136
-  boxSize: {x: 0.22, y: 0.13}
+  boxLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  boxSize: {x: 0.1, y: 0.13}
 --- !u!114 &3461801006312305000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,29 +243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54fbb17dd2d3548429f197abb1d67a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallMultiplier: 6
+  fallMultiplier: 8
   lowJumpMultipiler: 2
---- !u!114 &951841739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3461801006312305011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a264a59ebd6725f4cb94c543c39102ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buddyPrefab: {fileID: 0}
-  vircam: {fileID: 0}
-  abilityOn: 0
-  resetKey: 304
-  buddyKey: 306
-  buddyPos: {x: 0, y: 0}
-  buddyIcon: {fileID: 0}
-  playerAni: {fileID: 0}
-  ab: {fileID: 1906564410}
 --- !u!114 &1906564410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,6 +261,43 @@ MonoBehaviour:
   stasis: 1
   invertGravity: 1
   littleBuddy: 1
+--- !u!114 &8606702075286337997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3461801006312305011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a264a59ebd6725f4cb94c543c39102ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buddyPrefab: {fileID: 0}
+  vircam: {fileID: 0}
+  abilityOn: 0
+  resetKey: 0
+  buddyKey: 0
+  buddyPos: {x: 0, y: 0}
+  buddyIcon: {fileID: 0}
+  playerAni: {fileID: 0}
+  ab: {fileID: 0}
+--- !u!114 &1886914086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3461801006312305011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb911fe2bad6b4242a185e2cb43de744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raycastDistance: 0.81
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 136
 --- !u!1 &5504173520845368760
 GameObject:
   m_ObjectHideFlags: 0

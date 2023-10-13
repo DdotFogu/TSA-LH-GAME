@@ -46,4 +46,11 @@ public class GravityController : MonoBehaviour
 
         GameObject.Find("Player").GetComponent<Movement>().enabled = true;
     }
+
+    private void OnCollisionStay2D(Collision2D col){
+        if(col.gameObject.CompareTag("Player")){
+            col.gameObject.GetComponent<Rigidbody2D>().velocity = this.GetComponent<Rigidbody2D>().velocity;
+        }
+    }
+
 }

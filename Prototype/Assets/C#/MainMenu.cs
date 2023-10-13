@@ -27,6 +27,6 @@ public class MainMenu : MonoBehaviour
 
 
     public void LoadSandBox(){
-        StartCoroutine(LoadNextLevel(2));
+        StartCoroutine(LoadNextLevel(6));
     }
 }

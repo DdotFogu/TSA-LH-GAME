@@ -192,7 +192,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 10
-  m_Material: {fileID: 6200000, guid: c81e21833c9e2814e9ed98efcb16a661, type: 2}
+  m_Material: {fileID: 6200000, guid: b579e3e6a0dd9574e8aa051538378356, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -263,6 +263,7 @@ MonoBehaviour:
   stasisIcon: {fileID: 3221096339736541953}
   lockState: 0
   cam: {fileID: 0}
+  playerAni: {fileID: 0}
   lastVelocity: {x: 0, y: 0}
   groundLayer:
     serializedVersion: 2
@@ -280,6 +281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
+  playerAni: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -300,6 +302,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  playerAni: {fileID: 0}
 --- !u!114 &704708448
 MonoBehaviour:
   m_ObjectHideFlags: 0

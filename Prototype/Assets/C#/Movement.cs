@@ -5,6 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     private bool inair = false;
+    private bool onBox = false;
     [SerializeField] float moveSpeed;
     private float horizontalMovement;
     [SerializeField] float jumpForce;
@@ -16,6 +17,7 @@ public class Movement : MonoBehaviour
     [Header("Raycast")]
     [SerializeField] float distance;
     [SerializeField] LayerMask groundLayer;
+    [SerializeField] LayerMask boxLayer;
     [SerializeField] Vector2 boxSize;
 
 
@@ -26,6 +28,12 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        if(Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, boxLayer)){
+            onBox = true;
+        }
+        else{
+            onBox = false;
+        }
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         Animation();
     }
@@ -47,7 +55,7 @@ public class Movement : MonoBehaviour
         else{
             ani.SetBool("Walking", true);
         }
-        if(Input.GetKeyDown(jumpKey)){
+        if(Input.GetKeyDown(jumpKey) && isGrounded()){
 
             ani.SetTrigger("Jump");
         }
@@ -81,6 +89,14 @@ public class Movement : MonoBehaviour
         rb.velocity = new Vector2(horizontalMovement * moveSpeed * Time.deltaTime, rb.velocity.y);
         if(Input.GetKey(jumpKey) && isGrounded()){
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D col){
+        if(onBox == true){
+            if(col.gameObject.CompareTag("Moveable")){
+                this.GetComponent<Rigidbody2D>().velocity = col.gameObject.GetComponent<Rigidbody2D>().velocity;
+            }
         }
     }
 }

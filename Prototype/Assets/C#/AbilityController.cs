@@ -8,4 +8,7 @@ public class AbilityController : MonoBehaviour
     public bool stasis;
     public bool invertGravity;
     public bool littleBuddy;
+
+    [Header("Book")]
+    public bool hasBook = true;
 }

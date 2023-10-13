@@ -8,6 +8,7 @@ TagManager:
   - Moveable
   - Nonmoveable
   - LittleBuddy
+  - PressurePlate
   layers:
   - Default
   - TransparentFX
