@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     private bool onBox = false;
     [SerializeField] float moveSpeed;
     private float horizontalMovement;
+    public float lastHorizontalMovement;
     [SerializeField] float jumpForce;
     [SerializeField] KeyCode jumpKey;
     Rigidbody2D rb;
@@ -28,6 +29,10 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        if(horizontalMovement != 0){
+            lastHorizontalMovement = horizontalMovement;
+        }
+
         if(Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, boxLayer)){
             onBox = true;
         }

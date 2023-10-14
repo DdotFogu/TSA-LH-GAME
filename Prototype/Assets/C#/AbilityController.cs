@@ -11,4 +11,18 @@ public class AbilityController : MonoBehaviour
 
     [Header("Book")]
     public bool hasBook = true;
+
+    public void DisableAll(){
+        telekenisis = false;
+        stasis = false;
+        invertGravity = false;
+        littleBuddy = false;
+    }
+
+    public void EnableAll(){
+        telekenisis = true;
+        stasis = true;
+        invertGravity = true;
+        littleBuddy = true;
+    }
 }

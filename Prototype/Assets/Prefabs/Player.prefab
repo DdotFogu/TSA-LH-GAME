@@ -116,9 +116,9 @@ GameObject:
   - component: {fileID: 3461801006312305015}
   - component: {fileID: 3461801006312305013}
   - component: {fileID: 418543928250616124}
+  - component: {fileID: 1906564410}
   - component: {fileID: 3461801006312305014}
   - component: {fileID: 3461801006312305000}
-  - component: {fileID: 1906564410}
   - component: {fileID: 8606702075286337997}
   - component: {fileID: 1886914086}
   m_Layer: 6
@@ -206,6 +206,23 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0057292953, y: -0.07656519}
   m_Size: {x: 0.2365936, y: 0.8078792}
   m_Direction: 0
+--- !u!114 &1906564410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3461801006312305011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84b02a37eb319b942895f010867c9d4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  telekenisis: 1
+  stasis: 1
+  invertGravity: 1
+  littleBuddy: 1
+  hasBook: 1
 --- !u!114 &3461801006312305014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 300
+  lastHorizontalMovement: 0
   jumpForce: 4
   jumpKey: 32
   pivot: {fileID: 5504173520845368760}
@@ -245,22 +263,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallMultiplier: 8
   lowJumpMultipiler: 2
---- !u!114 &1906564410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3461801006312305011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84b02a37eb319b942895f010867c9d4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  telekenisis: 1
-  stasis: 1
-  invertGravity: 1
-  littleBuddy: 1
 --- !u!114 &8606702075286337997
 MonoBehaviour:
   m_ObjectHideFlags: 0

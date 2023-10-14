@@ -7,7 +7,7 @@ public class LitlleBuddy : MonoBehaviour
 {
     [SerializeField] private GameObject buddyPrefab;
     [SerializeField] private GameObject vircam;
-    [SerializeField] private bool abilityOn;
+    public bool abilityOn;
     [SerializeField] private KeyCode resetKey;
     [SerializeField] private KeyCode buddyKey;
     [SerializeField] private Vector2 buddyPos;

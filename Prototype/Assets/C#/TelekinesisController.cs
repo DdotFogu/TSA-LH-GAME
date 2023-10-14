@@ -29,11 +29,12 @@ public class TelekinesisController : MonoBehaviour
     }
 
     private void OnMouseDown(){
-        if(!Physics2D.Linecast(GameObject.Find("Player").transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), groundLayer)){
+        if(!Physics2D.Linecast(GameObject.Find("Player").transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), groundLayer) && GameObject.Find("Player").GetComponent<AbilityController>().telekenisis == true){
             normalGravity = gameObject.GetComponent<Rigidbody2D>().gravityScale;
             playerAni.SetBool("Telekensis", true);
             offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
             gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+            Debug.Log("fagg");
             dragging = true;
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
