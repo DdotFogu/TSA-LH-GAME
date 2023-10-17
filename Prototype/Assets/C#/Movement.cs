@@ -29,8 +29,13 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        
         if(horizontalMovement != 0){
             lastHorizontalMovement = horizontalMovement;
+        }
+        
+        if(this.GetComponent<Rigidbody2D>().velocity.y > 7){
+            this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 7);
         }
 
         if(Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, boxLayer)){

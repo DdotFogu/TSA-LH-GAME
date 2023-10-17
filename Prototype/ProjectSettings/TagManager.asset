@@ -9,6 +9,7 @@ TagManager:
   - Nonmoveable
   - LittleBuddy
   - PressurePlate
+  - MetalBox
   layers:
   - Default
   - TransparentFX
@@ -48,6 +49,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 2879287757
+    locked: 0
+  - name: Props
+    uniqueID: 3695991223
     locked: 0
   - name: UI
     uniqueID: 3033400121

@@ -34,7 +34,6 @@ public class TelekinesisController : MonoBehaviour
             playerAni.SetBool("Telekensis", true);
             offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
             gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-            Debug.Log("fagg");
             dragging = true;
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;

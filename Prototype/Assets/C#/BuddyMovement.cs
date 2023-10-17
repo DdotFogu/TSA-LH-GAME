@@ -29,6 +29,7 @@ public class BuddyMovement : MonoBehaviour
     }
 
     private void FixedUpdate() {
+        GameObject.Find("Player").GetComponent<Movement>().enabled = false;
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         HandelMovement();
         StateSetter();
