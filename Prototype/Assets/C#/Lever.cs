@@ -14,12 +14,14 @@ public class Lever : MonoBehaviour
         interactIcon.SetActive(false);
     }
 
+    
+
     public void OnTriggerStay2D(Collider2D col){
         if(col.CompareTag("Player") && Input.GetKey(interactKey) && flipped == false){
             flipped = true;
             door.GetComponent<LevelHandler>().num++;
         }
-        if(col.CompareTag("Player")){
+        if(col.CompareTag("Player") && flipped == false){
             interactIcon.SetActive(true);
         }
     }

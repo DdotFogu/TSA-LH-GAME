@@ -8,6 +8,7 @@ public class BuddyMovement : MonoBehaviour
     [SerializeField] private string buddyState;
     public Animator playerAni;
     private Animator ani;
+    private bool abilityState;
 
     [Header("Movement")]
     [SerializeField] float moveSpeed;
@@ -28,11 +29,17 @@ public class BuddyMovement : MonoBehaviour
         ani = gameObject.GetComponent<Animator>();
     }
 
+    private void Update(){
+        abilityState = GameObject.Find("Player").GetComponent<LitlleBuddy>().abilityOn;
+    }
+
     private void FixedUpdate() {
-        GameObject.Find("Player").GetComponent<Movement>().enabled = false;
-        horizontalMovement = Input.GetAxisRaw("Horizontal");
-        HandelMovement();
-        StateSetter();
+        if(abilityState){
+            GameObject.Find("Player").GetComponent<Movement>().enabled = false;
+            horizontalMovement = Input.GetAxisRaw("Horizontal");
+            HandelMovement();
+            StateSetter();
+        }
     }
     public void HandelMovement(){
         if(buddyState == "Fox"){

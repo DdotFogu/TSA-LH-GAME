@@ -11,14 +11,12 @@ public class LitlleBuddy : MonoBehaviour
     [SerializeField] private KeyCode resetKey;
     [SerializeField] private KeyCode buddyKey;
     [SerializeField] private Vector2 buddyPos;
-    public GameObject buddyIcon;
     public Animator playerAni;
     public AbilityController ab;
 
     private void Start() {
         abilityOn = false;
         buddyPrefab.SetActive(false);
-        buddyIcon.SetActive(false);
     }
     
     private void Update() {
@@ -32,10 +30,7 @@ public class LitlleBuddy : MonoBehaviour
                 }
                 else{
                     abilityOn = false;
-                    buddyIcon.SetActive(true);
-                    buddyIcon.transform.position = buddyPrefab.transform.position;
                     gameObject.GetComponent<Movement>().enabled = true;
-                    buddyPrefab.SetActive(false);
                 }
             }
 
@@ -69,7 +64,7 @@ public class LitlleBuddy : MonoBehaviour
 
     public void HandelCamera(){
         var vcam = vircam.GetComponent<CinemachineVirtualCamera>();
-        if(buddyPrefab.activeInHierarchy){
+        if(abilityOn){
             vcam.Follow = buddyPrefab.transform;
         }
         else{
@@ -78,7 +73,6 @@ public class LitlleBuddy : MonoBehaviour
     }
 
     private void ActiveBuddy(){
-        buddyIcon.SetActive(false);
         buddyPrefab.SetActive(true);
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         if(buddyPos == new Vector2(0, 0)){
