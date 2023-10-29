@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -21,6 +19,9 @@ public class Movement : MonoBehaviour
     [SerializeField] LayerMask boxLayer;
     [SerializeField] Vector2 boxSize;
 
+    [Header("Coyote Timer")]
+    [SerializeField] float coyoteTime = 0.1f;
+    private float coyoteTimer = 0f;
 
     void Start()
     {
@@ -29,82 +30,114 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        
-        if(horizontalMovement != 0){
+        if (horizontalMovement != 0)
+        {
             lastHorizontalMovement = horizontalMovement;
         }
-        
-        if(this.GetComponent<Rigidbody2D>().velocity.y > 7){
+
+        if (this.GetComponent<Rigidbody2D>().velocity.y > 7)
+        {
             this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 7);
         }
 
-        if(Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, boxLayer)){
+        if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, boxLayer))
+        {
             onBox = true;
         }
-        else{
+        else
+        {
             onBox = false;
         }
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         Animation();
+
+        // Coyote Timer logic
+        if (isGrounded())
+        {
+            coyoteTimer = coyoteTime;
+        }
+        else
+        {
+            coyoteTimer -= Time.deltaTime;
+        }
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         MovementHandling();
     }
 
-    void Animation(){
-        if(horizontalMovement == 1){
-            pivot.transform.localScale = new Vector2 (-1, 1);
+    void Animation()
+    {
+        if (horizontalMovement == 1)
+        {
+            pivot.transform.localScale = new Vector2(-1, 1);
         }
-        if(horizontalMovement == -1){
-            pivot.transform.localScale = new Vector2 (1, 1);
+        if (horizontalMovement == -1)
+        {
+            pivot.transform.localScale = new Vector2(1, 1);
         }
-        if(horizontalMovement == 0){
+        if (horizontalMovement == 0)
+        {
             ani.SetBool("Walking", false);
         }
-        else{
+        else
+        {
             ani.SetBool("Walking", true);
         }
-        if(Input.GetKeyDown(jumpKey) && isGrounded()){
-
+        if (Input.GetKeyDown(jumpKey) && (isGrounded() || coyoteTimer > 0))
+        {
             ani.SetTrigger("Jump");
+            coyoteTimer = 0; // Reset the coyote timer when the player jumps.
         }
-        if(Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, groundLayer)){
+        if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, groundLayer))
+        {
             ani.SetTrigger("Land");
         }
-        if(GetComponent<Rigidbody2D>().velocity.y < 0 && inair == true){
+        if (GetComponent<Rigidbody2D>().velocity.y < 0 && inair == true)
+        {
             ani.SetBool("Falling", true);
         }
-        if(Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, groundLayer)){
+        if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, groundLayer))
+        {
             ani.SetBool("Falling", false);
         }
     }
-    
-    
-    public bool isGrounded(){
-        if(Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, groundLayer)){
+
+    public bool isGrounded()
+    {
+        if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, groundLayer))
+        {
             inair = false;
             return true;
         }
-        else{
+        else
+        {
             inair = true;
             return false;
         }
     }
-    private void OnDrawGizmos(){
+
+    private void OnDrawGizmos()
+    {
         Gizmos.DrawWireCube(transform.position - transform.up * distance, boxSize);
     }
 
-    void MovementHandling(){
+    void MovementHandling()
+    {
         rb.velocity = new Vector2(horizontalMovement * moveSpeed * Time.deltaTime, rb.velocity.y);
-        if(Input.GetKey(jumpKey) && isGrounded()){
+        if (Input.GetKey(jumpKey) && isGrounded())
+        {
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
         }
     }
 
-    private void OnCollisionStay2D(Collision2D col){
-        if(onBox == true){
-            if(col.gameObject.CompareTag("Moveable")){
+    private void OnCollisionStay2D(Collision2D col)
+    {
+        if (onBox == true)
+        {
+            if (col.gameObject.CompareTag("Moveable"))
+            {
                 this.GetComponent<Rigidbody2D>().velocity = col.gameObject.GetComponent<Rigidbody2D>().velocity;
             }
         }

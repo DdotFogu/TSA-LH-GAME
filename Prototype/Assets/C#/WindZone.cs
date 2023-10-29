@@ -8,7 +8,7 @@ public class Wind : MonoBehaviour
     
     private void OnTriggerStay2D(Collider2D other) {
         var hitobj = other.gameObject;
-        if(hitobj != null){
+        if(hitobj != null && hitobj.GetComponent<Rigidbody2D>() != null){
             var rb = hitobj.GetComponent<Rigidbody2D>();
             var dir = transform.up;
             rb.AddForce(dir * _windforce);

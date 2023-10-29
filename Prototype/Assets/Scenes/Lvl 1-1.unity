@@ -670,6 +670,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3745170439060822131, guid: 408a2cba90874494c9646b6ef208d3ae, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4742708614185869734, guid: 408a2cba90874494c9646b6ef208d3ae, type: 3}
       propertyPath: m_Name
       value: Lever
@@ -9184,6 +9188,18 @@ PrefabInstance:
     - target: {fileID: 5849009187008941021, guid: ad2ce7dbdc8e23d4f9b3c32303e54bd5, type: 3}
       propertyPath: m_Size.y
       value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5849009187008941021, guid: ad2ce7dbdc8e23d4f9b3c32303e54bd5, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 5849009187008941021, guid: ad2ce7dbdc8e23d4f9b3c32303e54bd5, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 5849009187008941021, guid: ad2ce7dbdc8e23d4f9b3c32303e54bd5, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8666667
       objectReference: {fileID: 0}
     - target: {fileID: 5849009187008941021, guid: ad2ce7dbdc8e23d4f9b3c32303e54bd5, type: 3}
       propertyPath: m_Origin.x
@@ -17984,6 +18000,18 @@ PrefabInstance:
     - target: {fileID: 7936883422391925906, guid: ad2ce7dbdc8e23d4f9b3c32303e54bd5, type: 3}
       propertyPath: m_SortingLayerID
       value: -651652039
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936883422391925907, guid: ad2ce7dbdc8e23d4f9b3c32303e54bd5, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936883422391925907, guid: ad2ce7dbdc8e23d4f9b3c32303e54bd5, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936883422391925907, guid: ad2ce7dbdc8e23d4f9b3c32303e54bd5, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7936883422391925907, guid: ad2ce7dbdc8e23d4f9b3c32303e54bd5, type: 3}
       propertyPath: m_Tiles.Array.size

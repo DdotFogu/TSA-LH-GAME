@@ -5,20 +5,67 @@ using UnityEngine;
 public class PressurePlate : MonoBehaviour
 {
     public GameObject door;
+    public GameObject wall;
+    public GameObject elevator;
 
-    public void OnCollisionEnter2D(Collision2D col)
+    public void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.collider.CompareTag("Player") || col.collider.CompareTag("LittleBuddy") || col.collider.CompareTag("Moveable") || col.collider.CompareTag("MetalBox"))
+        if (elevator != null){
+            if (col.CompareTag("Player") || col.CompareTag("LittleBuddy") || col.CompareTag("Moveable") || col.CompareTag("MetalBox"))
+            {
+                elevator.GetComponent<Elevator>().strenght++;
+            }
+        }
+
+        if (door != null)
         {
-            door.GetComponent<LevelHandler>().num++;
+            if (col.CompareTag("Player") || col.CompareTag("LittleBuddy") || col.CompareTag("Moveable") || col.CompareTag("MetalBox"))
+            {
+                LevelHandler levelHandler = door.GetComponent<LevelHandler>();
+                if (levelHandler != null)
+                {
+                    levelHandler.num++;
+                }
+            }
+        }
+        
+        if (wall != null)
+        {
+            if (col.CompareTag("Player") || col.CompareTag("LittleBuddy") || col.CompareTag("Moveable") || col.CompareTag("MetalBox"))
+            {
+                wall.GetComponent<WallHandler>().strenght++;
+            }
         }
     }
 
-    public void OnCollisionExit2D(Collision2D col)
+
+    public void OnTriggerExit2D(Collider2D col)
     {
-        if (col.collider.CompareTag("Player") || col.collider.CompareTag("LittleBuddy") || col.collider.CompareTag("Moveable") || col.collider.CompareTag("MetalBox"))
+        if (elevator != null){
+            if (col.CompareTag("Player") || col.CompareTag("LittleBuddy") || col.CompareTag("Moveable") || col.CompareTag("MetalBox"))
+            {
+                elevator.GetComponent<Elevator>().strenght--;
+            }
+        }
+
+        if (door != null)
         {
-            door.GetComponent<LevelHandler>().num--;
+            if (col.CompareTag("Player") || col.CompareTag("LittleBuddy") || col.CompareTag("Moveable") || col.CompareTag("MetalBox"))
+            {
+                LevelHandler levelHandler = door.GetComponent<LevelHandler>();
+                if (levelHandler != null)
+                {
+                    levelHandler.num--;
+                }
+            }
+        }
+
+        if (wall != null)
+        {
+            if (col.CompareTag("Player") || col.CompareTag("LittleBuddy") || col.CompareTag("Moveable") || col.CompareTag("MetalBox"))
+            {
+                wall.GetComponent<WallHandler>().strenght--;
+            }
         }
     }
 }

@@ -29,7 +29,7 @@ public class TelekinesisController : MonoBehaviour
     }
 
     private void OnMouseDown(){
-        if(!Physics2D.Linecast(GameObject.Find("Player").transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), groundLayer) && GameObject.Find("Player").GetComponent<AbilityController>().telekenisis == true){
+        if(GameObject.Find("Player").GetComponent<Movement>().isGrounded() && !Physics2D.Linecast(GameObject.Find("Player").transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), groundLayer) && GameObject.Find("Player").GetComponent<AbilityController>().telekenisis == true){
             normalGravity = gameObject.GetComponent<Rigidbody2D>().gravityScale;
             playerAni.SetBool("Telekensis", true);
             offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -63,15 +63,18 @@ public class TelekinesisController : MonoBehaviour
 
     private void UpdateTelekinesisIcon()
     {
-        if(GameObject.Find("Player").GetComponent<AbilityController>().telekenisis == true){
+        if(GameObject.Find("Player").GetComponent<AbilityController>().telekenisis == true && GameObject.Find("Player").GetComponent<Movement>().isGrounded()){
             Vector2 trueHeight = gameObject.GetComponent<SpriteRenderer>().bounds.extents;
             telekinesisIcon.transform.position = gameObject.transform.position + Vector3.up * (trueHeight.y + 1f);
             telekinesisIcon.GetComponent<SpriteRenderer>().enabled = true;
         }
+        else{
+            telekinesisIcon.GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D col){
-        if(col.tag == "PressurePlate"){
+        if(col.tag == "PressurePlate" && col.gameObject.GetComponent<PressurePlate>().door != null){
             col.gameObject.GetComponent<PressurePlate>().door.GetComponent<LevelHandler>().num--;
         }
     }

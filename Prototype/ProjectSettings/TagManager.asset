@@ -19,12 +19,12 @@ TagManager:
   - UI
   - Player
   - Box
-  - PlayerWall
+  - 
   - LittleBuddy
   - 'Spririt '
-  - BuddyWall
   - 
-  - 
+  - BWall
+  - PWall
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 2879287757
+    locked: 0
+  - name: B/PWall
+    uniqueID: 2728374423
     locked: 0
   - name: Ground
     uniqueID: 3643315257

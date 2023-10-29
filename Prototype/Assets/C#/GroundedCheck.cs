@@ -13,10 +13,17 @@ public class GroundedCheck2D : MonoBehaviour
 
     void Update()
     {
-        if (Physics2D.Raycast(transform.position, Vector2.down, raycastDistance, groundLayer))
+        bool isGrounded = Physics2D.Raycast(transform.position, Vector2.down, raycastDistance, groundLayer);
+
+        if (isGrounded)
         {
-            rb.velocity = new Vector2(rb.velocity.x, 0f);
+            HandleGrounded();
         }
+    }
+
+    void HandleGrounded()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, 0f);
     }
 
     void OnDrawGizmos()
