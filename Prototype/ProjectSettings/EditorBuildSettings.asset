@@ -28,6 +28,9 @@ EditorBuildSettings:
     guid: 49bffaf5cf486d548bfd609c2a9fced5
   - enabled: 1
     path: Assets/Scenes/Lvl 2-2.unity
+    guid: 79bab408257ae1c4483330af9160bc81
+  - enabled: 1
+    path: Assets/Scenes/Lvl 2-3.unity
     guid: d6a89d7c3395a8d4c937b8887303c120
   - enabled: 1
     path: Assets/Scenes/Sanbox.unity
