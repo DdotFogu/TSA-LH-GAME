@@ -38,18 +38,18 @@ public class PickupBox : MonoBehaviour
                 if(GameObject.Find("Player").GetComponent<Movement>().lastHorizontalMovement < 0 && !Physics2D.BoxCast(GameObject.Find("Player").transform.position, lBoxSize, 0, transform.right, lDistance.x, wallLayer)){
                     pickedUp = false;
                     GameObject.Find("Player").GetComponent<AbilityController>().EnableAll();
-                    this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+                    GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
                     transform.position = new Vector2(GameObject.Find("Player").transform.position.x - 1, GameObject.Find("Player").transform.position.y);
                 }
                 else if(GameObject.Find("Player").GetComponent<Movement>().lastHorizontalMovement > 0 && !Physics2D.BoxCast(GameObject.Find("Player").transform.position, rBoxSize, 0, transform.right, rDistance.x, wallLayer)){
                     pickedUp = false;
                     GameObject.Find("Player").GetComponent<AbilityController>().EnableAll();
-                    this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+                    GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
                     transform.position = new Vector2(GameObject.Find("Player").transform.position.x + 1, GameObject.Find("Player").transform.position.y);
                 }
             }
 
-            if(Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, playerLayer) && Input.GetKeyDown(pickupKey) && pickedUp == false){
+            if(GameObject.Find("Player").GetComponent<AbilityController>().carryingMetal == false && Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, playerLayer) && Input.GetKeyDown(pickupKey) && pickedUp == false){
             
                 if(xDistance < 0 && GameObject.Find("Player").GetComponent<Movement>().lastHorizontalMovement > 0){
                     Debug.Log("Right");
@@ -81,9 +81,15 @@ public class PickupBox : MonoBehaviour
     private void StateHandler(){
         if(pickedUp){
             GameObject.Find("Player").GetComponent<AbilityController>().DisableAll();
-            this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
-            this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-            transform.position = new Vector2(GameObject.Find("Player").transform.position.x, GameObject.Find("Player").transform.position.y + 1.3f);
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+            GetComponent<BoxCollider2D>().isTrigger = true;
+            GameObject.Find("Player").GetComponent<AbilityController>().carryingMetal = true;
+            transform.position = new Vector2(GameObject.Find("Player").transform.position.x, GameObject.Find("Player").transform.position.y + 1f);
+        }
+        else{
+            GetComponent<BoxCollider2D>().isTrigger = false;
+            GameObject.Find("Player").GetComponent<AbilityController>().carryingMetal = false;
         }
     }
 

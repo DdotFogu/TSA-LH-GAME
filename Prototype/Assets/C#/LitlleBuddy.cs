@@ -16,7 +16,6 @@ public class LitlleBuddy : MonoBehaviour
 
     private void Start() {
         abilityOn = false;
-        buddyPrefab.SetActive(false);
     }
     
     private void Update() {
@@ -35,7 +34,6 @@ public class LitlleBuddy : MonoBehaviour
 
                     if(firstActivation == false){
                         firstActivation = true;
-                        buddyPrefab.transform.position = transform.position;
                     }
                 }
                 else{

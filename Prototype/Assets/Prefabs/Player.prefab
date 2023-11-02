@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1816336289
-  m_SortingLayer: 6
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 1599184902, guid: e6699a3a282903b45af810d65a45892a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -244,11 +244,12 @@ MonoBehaviour:
   distance: 0.9
   groundLayer:
     serializedVersion: 2
-    m_Bits: 136
+    m_Bits: 392
   boxLayer:
     serializedVersion: 2
     m_Bits: 128
   boxSize: {x: 0.1, y: 0.13}
+  coyoteTime: 0.1
 --- !u!114 &3461801006312305000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,10 +279,7 @@ MonoBehaviour:
   buddyPrefab: {fileID: 0}
   vircam: {fileID: 0}
   abilityOn: 0
-  resetKey: 0
   buddyKey: 0
-  buddyPos: {x: 0, y: 0}
-  buddyIcon: {fileID: 0}
   playerAni: {fileID: 0}
   ab: {fileID: 0}
 --- !u!114 &1886914086
@@ -299,7 +297,7 @@ MonoBehaviour:
   raycastDistance: 0.81
   groundLayer:
     serializedVersion: 2
-    m_Bits: 136
+    m_Bits: 392
 --- !u!1 &5504173520845368760
 GameObject:
   m_ObjectHideFlags: 0

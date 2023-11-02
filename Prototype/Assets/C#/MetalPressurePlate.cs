@@ -5,21 +5,67 @@ using UnityEngine;
 public class MetalPressurePlate : MonoBehaviour
 {
     public GameObject door;
+    public GameObject wall;
+    public GameObject elevator;
 
-    public void OnCollisionEnter2D(Collision2D col)
+    public void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.collider.CompareTag("MetalBox"))
+        if (elevator != null){
+            if (col.CompareTag("MetalBox"))
+            {
+                elevator.GetComponent<Elevator>().strenght++;
+            }
+        }
+
+        if (door != null)
         {
-            Debug.Log("Metal Box");
-            door.GetComponent<LevelHandler>().num++;
+            if (col.CompareTag("MetalBox"))
+            {
+                LevelHandler levelHandler = door.GetComponent<LevelHandler>();
+                if (levelHandler != null)
+                {
+                    levelHandler.num++;
+                }
+            }
+        }
+        
+        if (wall != null)
+        {
+            if (col.CompareTag("MetalBox"))
+            {
+                wall.GetComponent<WallHandler>().strenght++;
+            }
         }
     }
 
-    public void OnCollisionExit2D(Collision2D col)
+
+    public void OnTriggerExit2D(Collider2D col)
     {
-        if (col.collider.CompareTag("MetalBox"))
+        if (elevator != null){
+            if (col.CompareTag("MetalBox"))
+            {
+                elevator.GetComponent<Elevator>().strenght--;
+            }
+        }
+
+        if (door != null)
         {
-            door.GetComponent<LevelHandler>().num--;
+            if (col.CompareTag("MetalBox"))
+            {
+                LevelHandler levelHandler = door.GetComponent<LevelHandler>();
+                if (levelHandler != null)
+                {
+                    levelHandler.num--;
+                }
+            }
+        }
+
+        if (wall != null)
+        {
+            if (col.CompareTag("MetalBox"))
+            {
+                wall.GetComponent<WallHandler>().strenght--;
+            }
         }
     }
 }

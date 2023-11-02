@@ -127,7 +127,7 @@ MonoBehaviour:
   groundDistance: 0.53
   groundLayer:
     serializedVersion: 2
-    m_Bits: 136
+    m_Bits: 392
   groundBoxSize: {x: 1.33, y: 0.03}
   wallDistance: {x: -0.36, y: -0.5}
   wallBoxSize: {x: 0.21, y: 0.03}

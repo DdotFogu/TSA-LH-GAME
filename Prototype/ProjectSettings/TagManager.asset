@@ -10,6 +10,7 @@ TagManager:
   - LittleBuddy
   - PressurePlate
   - MetalBox
+  - Slime
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - UI
   - Player
   - Box
-  - 
+  - Slime
   - LittleBuddy
   - 'Spririt '
   - 
@@ -64,6 +65,9 @@ TagManager:
     locked: 0
   - name: Box
     uniqueID: 3804946393
+    locked: 0
+  - name: MetalBox
+    uniqueID: 406301871
     locked: 0
   - name: Icon
     uniqueID: 312258361

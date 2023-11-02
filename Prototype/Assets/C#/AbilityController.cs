@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class AbilityController : MonoBehaviour
 {
+    [Header("Magic")]
     public bool telekenisis;
     public bool stasis;
     public bool invertGravity;
     public bool littleBuddy;
+
+    [Header("Conditions")]
+    public bool carryingMetal;
 
     [Header("Book")]
     public bool hasBook = true;
