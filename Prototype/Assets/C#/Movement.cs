@@ -51,7 +51,6 @@ public class Movement : MonoBehaviour
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         Animation();
 
-        // Coyote Timer logic
         if (isGrounded())
         {
             coyoteTimer = coyoteTime;
@@ -77,6 +76,8 @@ public class Movement : MonoBehaviour
         {
             pivot.transform.localScale = new Vector2(1, 1);
         }
+        
+            
         if (horizontalMovement == 0)
         {
             ani.SetBool("Walking", false);
@@ -88,7 +89,7 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(jumpKey) && (isGrounded() || coyoteTimer > 0))
         {
             ani.SetTrigger("Jump");
-            coyoteTimer = 0; // Reset the coyote timer when the player jumps.
+            coyoteTimer = 0;
         }
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, groundLayer))
         {

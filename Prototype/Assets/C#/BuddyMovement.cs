@@ -7,7 +7,8 @@ public class BuddyMovement : MonoBehaviour
 {
     [SerializeField] private string buddyState;
     public Animator playerAni;
-    private Animator ani;
+    public Animator buddyAni;
+    public GameObject pivot;
     private bool abilityState;
 
     [Header("Movement")]
@@ -25,14 +26,33 @@ public class BuddyMovement : MonoBehaviour
     [SerializeField] private Vector2 wall2Distance;
     [SerializeField] private Vector2 wall2BoxSize;
 
-    private void Start()
-    {
-        ani = GetComponent<Animator>();
-    }
-
     private void Update()
     {
         abilityState = GameObject.Find("Player").GetComponent<LitlleBuddy>().abilityOn;
+
+        horizontalMovement = Input.GetAxisRaw("Horizontal");
+
+        if(abilityState){
+            if (horizontalMovement == 1)
+            {
+                pivot.transform.localScale = new Vector2(-1.3624f, 1.3624f);
+            }
+            if (horizontalMovement == -1)
+            {
+                pivot.transform.localScale = new Vector2(1.3624f, 1.3624f);
+            }
+        }
+
+        if (horizontalMovement == 0)
+        {
+            buddyAni.SetBool("Walking", false);
+        }
+        else
+        {
+            buddyAni.SetBool("Walking", true);
+        }
+
+        buddyAni.SetBool("AbilityOn", abilityState);
     }
 
     private void FixedUpdate()
@@ -108,11 +128,13 @@ public class BuddyMovement : MonoBehaviour
         if (groundDetected)
         {
             playerAni.SetInteger("AnimalState", 1);
+            buddyAni.SetInteger("AnimalState", 1);
             buddyState = "Fox";
         }
         else
         {
             playerAni.SetInteger("AnimalState", 3);
+            buddyAni.SetInteger("AnimalState", 3);
             buddyState = "Owl";
         }
 
@@ -122,6 +144,7 @@ public class BuddyMovement : MonoBehaviour
         if (wallDetected || wall2Detected)
         {
             playerAni.SetInteger("AnimalState", 2);
+            buddyAni.SetInteger("AnimalState", 2);
             buddyState = "Frog";
         }
     }

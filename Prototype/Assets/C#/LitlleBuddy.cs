@@ -20,6 +20,11 @@ public class LitlleBuddy : MonoBehaviour
     }
     
     private void Update() {
+
+        if(abilityOn){
+            gameObject.GetComponent<Movement>().enabled = false;
+        }
+
         if(GameObject.Find("Player").GetComponent<AbilityController>().littleBuddy == true){
             HandelCamera();
             if(Input.GetKeyDown(buddyKey)){

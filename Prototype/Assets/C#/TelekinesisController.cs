@@ -11,70 +11,93 @@ public class TelekinesisController : MonoBehaviour
     public LayerMask groundLayer;
     public Animator playerAni;
 
-    void Start(){
+    // Cached references to components
+    private Rigidbody2D rb;
+    private BoxCollider2D boxCollider;
+    private AbilityController abilityController;
+    private Movement playerMovement;
+
+    void Start()
+    {
         telekinesisIcon.GetComponent<SpriteRenderer>().enabled = false;
-        normalGravity = gameObject.GetComponent<Rigidbody2D>().gravityScale;
+        rb = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
+        abilityController = GameObject.Find("Player").GetComponent<AbilityController>();
+        playerMovement = GameObject.Find("Player").GetComponent<Movement>();
+        normalGravity = rb.gravityScale;
     }
 
-    void Update(){
-        if(dragging && GameObject.Find("Player").GetComponent<AbilityController>().telekenisis == true){
+    void Update()
+    {
+        if (dragging && abilityController.telekenisis == true)
+        {
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
         }
 
-        if(Physics2D.Linecast(GameObject.Find("Player").transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), groundLayer)){
-            gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
-            GameObject.Find("Player").GetComponent<Movement>().enabled = true;
+        if (Physics2D.Linecast(playerMovement.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), groundLayer))
+        {
+            boxCollider.isTrigger = false;
+            playerMovement.enabled = true;
             dragging = false;
         }
     }
 
-    private void OnMouseDown(){
-        if(GameObject.Find("Player").GetComponent<Movement>().isGrounded() && !Physics2D.Linecast(GameObject.Find("Player").transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), groundLayer) && GameObject.Find("Player").GetComponent<AbilityController>().telekenisis == true){
-            normalGravity = gameObject.GetComponent<Rigidbody2D>().gravityScale;
+    private void OnMouseDown()
+    {
+        if (playerMovement.isGrounded() && !Physics2D.Linecast(playerMovement.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), groundLayer) && abilityController.telekenisis == true)
+        {
+            normalGravity = rb.gravityScale;
             playerAni.SetBool("Telekensis", true);
             offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+            boxCollider.isTrigger = true;
             dragging = true;
-            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-            gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
-            GameObject.Find("Player").GetComponent<Movement>().enabled = false;
-            GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity = new Vector2(0, GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity.y);
+            rb.gravityScale = 0;
+            playerMovement.enabled = false;
+            playerMovement.GetComponent<Rigidbody2D>().velocity = new Vector2(0, playerMovement.GetComponent<Rigidbody2D>().velocity.y);
         }
     }
 
-    private void OnMouseUp(){
+    private void OnMouseUp()
+    {
         playerAni.SetBool("Telekensis", false);
-        gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
-        GameObject.Find("Player").GetComponent<Movement>().enabled = true;
-        gameObject.GetComponent<Rigidbody2D>().gravityScale = normalGravity;
-        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        boxCollider.isTrigger = false;
+        playerMovement.enabled = true;
+        rb.gravityScale = normalGravity;
+        rb.velocity = new Vector2(0, 0);
         dragging = false;
     }
 
-    private void OnMouseOver(){
-        if(!Physics2D.Linecast(GameObject.Find("Player").transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), groundLayer)){
+    private void OnMouseOver()
+    {
+        if (!Physics2D.Linecast(playerMovement.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), groundLayer))
+        {
             UpdateTelekinesisIcon();
         }
     }
 
-    private void OnMouseExit() {
+    private void OnMouseExit()
+    {
         telekinesisIcon.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     private void UpdateTelekinesisIcon()
     {
-        if(GameObject.Find("Player").GetComponent<AbilityController>().telekenisis == true && GameObject.Find("Player").GetComponent<Movement>().isGrounded()){
-            Vector2 trueHeight = gameObject.GetComponent<SpriteRenderer>().bounds.extents;
-            telekinesisIcon.transform.position = gameObject.transform.position + Vector3.up * (trueHeight.y + 1f);
+        if (abilityController.telekenisis == true && playerMovement.isGrounded())
+        {
+            Vector2 trueHeight = GetComponent<SpriteRenderer>().bounds.extents;
+            telekinesisIcon.transform.position = transform.position + Vector3.up * (trueHeight.y + 1f);
             telekinesisIcon.GetComponent<SpriteRenderer>().enabled = true;
         }
-        else{
+        else
+        {
             telekinesisIcon.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D col){
-        if(col.tag == "PressurePlate" && col.gameObject.GetComponent<PressurePlate>().door != null){
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.tag == "PressurePlate" && col.gameObject.GetComponent<PressurePlate>().door != null)
+        {
             col.gameObject.GetComponent<PressurePlate>().door.GetComponent<LevelHandler>().num--;
         }
     }
