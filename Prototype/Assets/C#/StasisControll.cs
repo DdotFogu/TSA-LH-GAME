@@ -34,6 +34,7 @@ public class StasisControll : MonoBehaviour
             }
 
             if(Input.GetKeyDown(KeyCode.Q)){
+                FindObjectOfType<AudioManager>().Play("Ability");
                 if(lockState == false){
                 StartCoroutine(Animation("Stasis"));
                 lockState = true;

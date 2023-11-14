@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class LevelHandler : MonoBehaviour
 {
     public bool open;
-    public int num;
-    [SerializeField] private int qouta;
+    public int strenght;
+    public int qouta;
     private Animator ani;
     public Animator transition;
     public KeyCode interactKey;
@@ -20,8 +20,8 @@ public class LevelHandler : MonoBehaviour
     }
 
     void Update(){
-        if(num < 0){
-            num = 0;
+        if(strenght < 0){
+            strenght = 0;
         }
 
         if(open == true){
@@ -31,7 +31,7 @@ public class LevelHandler : MonoBehaviour
             ani.SetBool("OpenState", false);
         }
 
-        if(num == qouta){
+        if(strenght == qouta){
             OpenDoor();
         }
         else{

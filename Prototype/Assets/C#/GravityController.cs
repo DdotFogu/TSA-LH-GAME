@@ -31,6 +31,7 @@ public class GravityController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.R) && gameObject.tag == "Moveable")
             {
+                FindObjectOfType<AudioManager>().Play("Ability");
                 if (!gravityState)
                 {
                     StartCoroutine(Animation("Gravity"));

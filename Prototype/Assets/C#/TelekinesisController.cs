@@ -96,9 +96,20 @@ public class TelekinesisController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
+        if(col.tag == "MetalPressurePlate"){
+            return;
+        }
         if (col.tag == "PressurePlate" && col.gameObject.GetComponent<PressurePlate>().door != null)
         {
-            col.gameObject.GetComponent<PressurePlate>().door.GetComponent<LevelHandler>().num--;
+            col.gameObject.GetComponent<PressurePlate>().door.GetComponent<LevelHandler>().strenght--;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D col){
+        if(col.gameObject.CompareTag("Ground") || col.gameObject.CompareTag("Moveable") || col.gameObject.CompareTag("Nonmoveable") || col.gameObject.CompareTag("Slime")){
+            if(!dragging){
+                FindObjectOfType<AudioManager>().Play("BoxThud");
+            }
         }
     }
 }

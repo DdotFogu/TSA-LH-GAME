@@ -3,7 +3,6 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     private bool inair = false;
-    private bool onBox = false;
     [SerializeField] float moveSpeed;
     private float horizontalMovement;
     public float lastHorizontalMovement;
@@ -16,7 +15,6 @@ public class Movement : MonoBehaviour
     [Header("Raycast")]
     [SerializeField] float distance;
     [SerializeField] LayerMask groundLayer;
-    [SerializeField] LayerMask boxLayer;
     [SerializeField] Vector2 boxSize;
 
     [Header("Coyote Timer")]
@@ -38,15 +36,6 @@ public class Movement : MonoBehaviour
         if (this.GetComponent<Rigidbody2D>().velocity.y > 7)
         {
             this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 7);
-        }
-
-        if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, boxLayer))
-        {
-            onBox = true;
-        }
-        else
-        {
-            onBox = false;
         }
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         Animation();
@@ -91,13 +80,14 @@ public class Movement : MonoBehaviour
             ani.SetTrigger("Jump");
             coyoteTimer = 0;
         }
-        if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, groundLayer))
-        {
-            ani.SetTrigger("Land");
-        }
-        if (GetComponent<Rigidbody2D>().velocity.y < 0 && inair == true)
+        if (GetComponent<Rigidbody2D>().velocity.y < 0 && inair)
         {
             ani.SetBool("Falling", true);
+        }
+        if (inair && Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, groundLayer))
+        {
+            FindObjectOfType<AudioManager>().Play("Land");
+            ani.SetTrigger("Land");
         }
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, groundLayer))
         {
@@ -130,17 +120,6 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(jumpKey) && isGrounded())
         {
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-        }
-    }
-
-    private void OnCollisionStay2D(Collision2D col)
-    {
-        if (onBox == true)
-        {
-            if (col.gameObject.CompareTag("Moveable"))
-            {
-                this.GetComponent<Rigidbody2D>().velocity = col.gameObject.GetComponent<Rigidbody2D>().velocity;
-            }
         }
     }
 }

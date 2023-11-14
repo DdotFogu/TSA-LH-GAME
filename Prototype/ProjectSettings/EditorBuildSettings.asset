@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/ComicStrip.unity
     guid: 23c99b6bb90456d4fbe2da88c191a47d
   - enabled: 1
+    path: Assets/Scenes/Lvl Intro.unity
+    guid: 6f995254faeb9d84184b99bc33456b0e
+  - enabled: 1
     path: Assets/Scenes/Lvl P1.unity
     guid: 39ef6d00962c872448385c67aec3dbb5
   - enabled: 1

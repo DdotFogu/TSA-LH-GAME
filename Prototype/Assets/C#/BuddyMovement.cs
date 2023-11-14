@@ -9,11 +9,13 @@ public class BuddyMovement : MonoBehaviour
     public Animator playerAni;
     public Animator buddyAni;
     public GameObject pivot;
+    public SpriteRenderer SpriteRen;
     private bool abilityState;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed;
     private float horizontalMovement;
+    private float verticalMovement;
 
     [Header("Ground Raycast")]
     [SerializeField] private float groundDistance;
@@ -31,15 +33,22 @@ public class BuddyMovement : MonoBehaviour
         abilityState = GameObject.Find("Player").GetComponent<LitlleBuddy>().abilityOn;
 
         horizontalMovement = Input.GetAxisRaw("Horizontal");
+        verticalMovement = Input.GetAxisRaw("Vertical");
 
         if(abilityState){
-            if (horizontalMovement == 1)
+            if (horizontalMovement == 1 || verticalMovement == 1)
             {
-                pivot.transform.localScale = new Vector2(-1.3624f, 1.3624f);
+                if(buddyState == "Fox" || buddyState == "Owl"){
+                    SpriteRen.flipY = false;
+                    pivot.transform.localScale = new Vector2(-1.3624f, 1.3624f);
+                }
             }
-            if (horizontalMovement == -1)
+            if (horizontalMovement == -1 || verticalMovement == -1)
             {
-                pivot.transform.localScale = new Vector2(1.3624f, 1.3624f);
+                if(buddyState == "Fox" || buddyState == "Owl"){
+                    SpriteRen.flipY = false;
+                    pivot.transform.localScale = new Vector2(1.3624f, 1.3624f);
+                }
             }
         }
 
@@ -47,8 +56,11 @@ public class BuddyMovement : MonoBehaviour
         {
             buddyAni.SetBool("Walking", false);
         }
-        else
+        if(horizontalMovement != 0 && buddyState == "Fox" || horizontalMovement != 0 && buddyState == "Owl")
         {
+            buddyAni.SetBool("Walking", true);
+        }
+        else if(verticalMovement != 0 && buddyState == "Frog"){
             buddyAni.SetBool("Walking", true);
         }
 
@@ -82,11 +94,42 @@ public class BuddyMovement : MonoBehaviour
             bool wallDetected = Physics2D.BoxCast(transform.position, wallBoxSize, 0, transform.right, wallDistance.x, groundLayer);
             bool wall2Detected = Physics2D.BoxCast(transform.position, wall2BoxSize, 0, transform.right, wall2Distance.x, groundLayer);
 
+            if(abilityState && wall2Detected){
+                if (verticalMovement == 1)
+                {
+                    if(buddyState == "Frog"){
+                        SpriteRen.flipY = false;
+                    }
+                }
+                if (verticalMovement == -1)
+                {
+                    if(buddyState == "Frog"){
+                        SpriteRen.flipY = true;
+                    }
+                }
+            }
+
+            if(abilityState && wallDetected){
+                if (verticalMovement == 1)
+                {
+                    if(buddyState == "Frog"){
+                        SpriteRen.flipY = false;
+                    }
+                }
+                if (verticalMovement == -1)
+                {
+                    if(buddyState == "Frog"){
+                        SpriteRen.flipY = true;
+                    }
+                }
+            }
+
             if (!wall2Detected)
             {
                 if (wallDetected)
                 {
-                    rb.velocity = new Vector2(rb.velocity.x, -horizontalMovement * moveSpeed * Time.deltaTime);
+                    pivot.transform.localScale = new Vector2(1.3624f, 1.3624f);
+                    rb.velocity = new Vector2(rb.velocity.x, verticalMovement * moveSpeed * Time.deltaTime);
                 }
             }
 
@@ -94,7 +137,8 @@ public class BuddyMovement : MonoBehaviour
             {
                 if (wall2Detected)
                 {
-                    rb.velocity = new Vector2(rb.velocity.x, horizontalMovement * moveSpeed * Time.deltaTime);
+                    pivot.transform.localScale = new Vector2(-1.3624f, 1.3624f);
+                    rb.velocity = new Vector2(rb.velocity.x, verticalMovement * moveSpeed * Time.deltaTime);
                 }
             }
 
@@ -102,12 +146,16 @@ public class BuddyMovement : MonoBehaviour
             {
                 if (wallDetected)
                 {
-                    rb.velocity = new Vector2(10, rb.velocity.y);
+                    rb.velocity = new Vector2(10, 0);
                 }
                 if (wall2Detected)
                 {
-                    rb.velocity = new Vector2(-10, rb.velocity.y);
+                    rb.velocity = new Vector2(-10, 0);
                 }
+            }
+
+            if(horizontalMovement == 0){
+                rb.velocity = new Vector2(0, rb.velocity.y);
             }
         }
         else if (buddyState == "Owl")
@@ -123,6 +171,8 @@ public class BuddyMovement : MonoBehaviour
 
     private void StateSetter()
     {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
         bool groundDetected = Physics2D.BoxCast(transform.position, groundBoxSize, 0, -transform.up, groundDistance, groundLayer);
 
         if (groundDetected)
@@ -138,15 +188,30 @@ public class BuddyMovement : MonoBehaviour
             buddyState = "Owl";
         }
 
-        bool wallDetected = Physics2D.BoxCast(transform.position, wallBoxSize, 0, transform.right, wallDistance.x, groundLayer);
-        bool wall2Detected = Physics2D.BoxCast(transform.position, wall2BoxSize, 0, transform.right, wall2Distance.x, groundLayer);
+        var hit1 = Physics2D.BoxCast(transform.position, wallBoxSize, 0, transform.right, wallDistance.x, groundLayer);
+        var hit2 = Physics2D.BoxCast(transform.position, wall2BoxSize, 0, transform.right, wall2Distance.x, groundLayer);
 
-        if (wallDetected || wall2Detected)
+        if ((hit1.collider != null && hit1.collider.CompareTag("Slime")) || (hit2.collider != null && hit2.collider.CompareTag("Slime")))
+        {
+            Debug.Log("Slime, can't climb");
+            if(groundDetected){
+                playerAni.SetInteger("AnimalState", 1);
+                buddyAni.SetInteger("AnimalState", 1);
+                buddyState = "Fox";
+            }
+            else{
+                playerAni.SetInteger("AnimalState", 3);
+                buddyAni.SetInteger("AnimalState", 3);
+                buddyState = "Owl";
+            }
+        }
+        else if ((hit1.collider != null && (hit1.collider.CompareTag("Ground") || hit1.collider.CompareTag("Moveable"))) || (hit2.collider != null && (hit2.collider.CompareTag("Ground") || hit2.collider.CompareTag("Moveable"))))
         {
             playerAni.SetInteger("AnimalState", 2);
             buddyAni.SetInteger("AnimalState", 2);
             buddyState = "Frog";
         }
+
     }
 
     private void OnDrawGizmos()

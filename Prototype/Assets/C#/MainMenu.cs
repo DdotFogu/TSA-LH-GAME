@@ -10,7 +10,9 @@ public class MainMenu : MonoBehaviour
 
 
     public void Start(){
-        transition.gameObject.SetActive(true);
+        if(transition != null){
+            transition.gameObject.SetActive(true);
+        }
     }
 
     public void PlayGame(){
@@ -18,7 +20,9 @@ public class MainMenu : MonoBehaviour
     }
 
     public IEnumerator LoadNextLevel(int levelIndex){
-        transition.SetTrigger("Start");
+        if(transition != null){
+            transition.SetTrigger("Start");
+        }
 
         yield return new WaitForSeconds(wait);
 
@@ -27,6 +31,10 @@ public class MainMenu : MonoBehaviour
 
 
     public void LoadSandBox(){
-        StartCoroutine(LoadNextLevel(9));
+        StartCoroutine(LoadNextLevel(10));
+    }
+
+    public void PlaySound(){
+        FindObjectOfType<AudioManager>().Play("Select");
     }
 }

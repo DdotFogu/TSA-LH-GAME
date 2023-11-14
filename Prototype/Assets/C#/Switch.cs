@@ -8,6 +8,7 @@ public class Switch : MonoBehaviour
     public GameObject door;
     public GameObject wall;
     public GameObject elevator;
+    public Animator ani;
 
     private bool canInteract = false;
 
@@ -33,11 +34,14 @@ public class Switch : MonoBehaviour
     {
         if (canInteract && Input.GetKeyDown(interactKey))
         {
+            FindObjectOfType<AudioManager>().Play("LeverFlick");
+
             switchState = !switchState;
 
             if(switchState){
+                ani.SetBool("On", true);
                 if(door != null){
-                    door.GetComponent<LevelHandler>().num++;
+                    door.GetComponent<LevelHandler>().strenght++;
                 }
 
                 if (wall != null)
@@ -51,8 +55,9 @@ public class Switch : MonoBehaviour
             }
 
             if(!switchState){
+                ani.SetBool("On", false);
                 if(door != null){
-                    door.GetComponent<LevelHandler>().num--;
+                    door.GetComponent<LevelHandler>().strenght--;
                 }
 
                 if (wall != null)

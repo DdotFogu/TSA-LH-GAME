@@ -8,9 +8,15 @@ public class LitlleBuddy : MonoBehaviour
     [SerializeField] private GameObject buddyPrefab;
     [SerializeField] private GameObject vircam;
     public bool abilityOn;
+    public GameObject Sprite;
     [SerializeField] private KeyCode buddyKey;
     public Animator playerAni;
     public AbilityController ab;
+
+    [Header("Ground Raycast")]
+    [SerializeField] private float groundDistance;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Vector2 groundBoxSize;
 
     private bool firstActivation = false;
 
@@ -19,9 +25,24 @@ public class LitlleBuddy : MonoBehaviour
     }
     
     private void Update() {
+        bool groundDetected = Physics2D.BoxCast(buddyPrefab.transform.position, groundBoxSize, 0, -transform.up, groundDistance, groundLayer);
 
         if(abilityOn){
             gameObject.GetComponent<Movement>().enabled = false;
+        }
+        
+        if(!abilityOn){
+            if(Sprite.GetComponent<SpriteRenderer>().enabled == true){
+                playerAni.SetBool("AnimalOn", false);
+            }
+            if(groundDetected){
+                buddyPrefab.GetComponent<BuddyMovement>().buddyAni.SetInteger("AnimalState", 1);
+            }
+        }
+        else{
+            if(Sprite.GetComponent<SpriteRenderer>().enabled == true){
+                playerAni.SetBool("AnimalOn", true);
+            }
         }
 
         if(GameObject.Find("Player").GetComponent<AbilityController>().littleBuddy == true){
@@ -37,6 +58,7 @@ public class LitlleBuddy : MonoBehaviour
                     }
                 }
                 else{
+                    FindObjectOfType<AudioManager>().Play("Ability");
                     abilityOn = false;
                     buddyPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
                     gameObject.GetComponent<Movement>().enabled = true;
@@ -75,7 +97,14 @@ public class LitlleBuddy : MonoBehaviour
 
     private void ActiveBuddy(){
         buddyPrefab.SetActive(true);
+        FindObjectOfType<AudioManager>().Play("Ability");
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         gameObject.GetComponent<Movement>().enabled = false;
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(buddyPrefab.transform.position - transform.up * groundDistance, groundBoxSize);
+    }
 }
+

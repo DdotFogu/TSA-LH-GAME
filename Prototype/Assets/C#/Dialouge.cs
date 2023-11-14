@@ -8,66 +8,113 @@ public class Dialouge : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
     public GameObject txt;
-    public GameObject continueTxt;
     public string[] lines;
     public float textspeed;
     public bool active;
+    public bool hidetxt;
+    public Animator ani;
 
     private int index;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         active = false;
         textComponent.text = string.Empty;
-        gameObject.GetComponent<Image>().enabled = false;
-        txt.SetActive(false);
-        continueTxt.SetActive(false);
+        
+        Image imageComponent = gameObject.GetComponent<Image>();
+        if (imageComponent != null)
+        {
+            imageComponent.enabled = false;
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0)){
-            if(textComponent.text == lines[index]){
-                NextLine();
-            }
-            else{
-                StopAllCoroutines();
-                textComponent.text = lines[index];
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (index < lines.Length)
+            {
+                if (textComponent.text == lines[index] && active)
+                {
+                    NextLine();
+                }
+                else
+                {
+                    StopAllCoroutines();
+                    textComponent.text = lines[index];
+                }
             }
         }
     }
 
-    public void StartDialogue(){
+    public void StartDialogue()
+    {
+        FindObjectOfType<AudioManager>().Play("DialougeStart");
+
+        if (ani != null)
+        {
+            ani.SetBool("Active", true);
+        }
+
         active = true;
         index = 0;
-        continueTxt.SetActive(true);
-        gameObject.GetComponent<Image>().enabled = true;
-        txt.SetActive(true);
-        GameObject.Find("DialougeTxt").GetComponent<TextMeshProUGUI>().text = null;
+
+        Image imageComponent = gameObject.GetComponent<Image>();
+        if (imageComponent != null)
+        {
+            imageComponent.enabled = true;
+        }
+
+        // Check if DialougeTxt GameObject exists in the scene
+        GameObject dialougeTxt = GameObject.Find("DialougeTxt");
+        if (dialougeTxt != null)
+        {
+            dialougeTxt.GetComponent<TextMeshProUGUI>().text = null;
+        }
+
         StartCoroutine(TypeLine());
     }
 
-    IEnumerator TypeLine(){
-        foreach(char c in lines[index].ToCharArray()){
-            textComponent.text += c;
-            yield return new WaitForSeconds(textspeed);
+    IEnumerator EndDialouge()
+    {
+        yield return new WaitForSeconds(1f);
+
+        Image imageComponent = gameObject.GetComponent<Image>();
+        if (imageComponent != null)
+        {
+            imageComponent.enabled = false;
+        }
+        active = false;
+    }
+
+    IEnumerator TypeLine()
+    {
+        if (index < lines.Length)
+        {
+            foreach (char c in lines[index].ToCharArray())
+            {
+                textComponent.text += c;
+                yield return new WaitForSeconds(textspeed);
+            }
         }
     }
 
-    void NextLine(){
-        if(index < lines.Length - 1){
+    public void NextLine()
+    {
+        if (index < lines.Length - 1)
+        {
+            FindObjectOfType<AudioManager>().Play("DialougeNext");
             index++;
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
         }
-        else{
-            gameObject.GetComponent<Image>().enabled = false;
-            active = false;
-            continueTxt.SetActive(false);
-            txt.SetActive(false);
+        else
+        {
+            if (ani != null)
+            {
+                ani.SetBool("Active", false);
+            }
+            StartCoroutine(EndDialouge());
         }
     }
 }

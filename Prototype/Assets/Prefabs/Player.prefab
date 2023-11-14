@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1816336289
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 1599184902, guid: e6699a3a282903b45af810d65a45892a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -222,6 +222,7 @@ MonoBehaviour:
   stasis: 1
   invertGravity: 1
   littleBuddy: 1
+  carryingMetal: 0
   hasBook: 1
 --- !u!114 &3461801006312305014
 MonoBehaviour:
@@ -245,9 +246,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 392
-  boxLayer:
-    serializedVersion: 2
-    m_Bits: 128
   boxSize: {x: 0.1, y: 0.13}
   coyoteTime: 0.1
 --- !u!114 &3461801006312305000
@@ -279,9 +277,15 @@ MonoBehaviour:
   buddyPrefab: {fileID: 0}
   vircam: {fileID: 0}
   abilityOn: 0
+  Sprite: {fileID: 1642775056}
   buddyKey: 0
   playerAni: {fileID: 0}
   ab: {fileID: 0}
+  groundDistance: 0.53
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 392
+  groundBoxSize: {x: 1.33, y: 0.03}
 --- !u!114 &1886914086
 MonoBehaviour:
   m_ObjectHideFlags: 0

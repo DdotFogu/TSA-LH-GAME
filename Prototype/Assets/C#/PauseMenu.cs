@@ -34,6 +34,7 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void Pause(){
+        FindObjectOfType<AudioManager>().Play("Pause");
         pauseMenuUi.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
