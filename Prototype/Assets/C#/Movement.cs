@@ -87,7 +87,6 @@ public class Movement : MonoBehaviour
         if (inair && Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, groundLayer))
         {
             FindObjectOfType<AudioManager>().Play("Land");
-            ani.SetTrigger("Land");
         }
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, distance, groundLayer))
         {

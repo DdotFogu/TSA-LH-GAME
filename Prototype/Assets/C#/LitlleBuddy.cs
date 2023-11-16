@@ -30,6 +30,9 @@ public class LitlleBuddy : MonoBehaviour
         if(abilityOn){
             gameObject.GetComponent<Movement>().enabled = false;
         }
+        else{
+            gameObject.GetComponent<Movement>().enabled = true;
+        }
         
         if(!abilityOn){
             if(Sprite.GetComponent<SpriteRenderer>().enabled == true){

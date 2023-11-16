@@ -31,7 +31,11 @@ public class MainMenu : MonoBehaviour
 
 
     public void LoadSandBox(){
-        StartCoroutine(LoadNextLevel(10));
+        StartCoroutine(LoadNextLevel(11));
+    }
+
+    public void LoadMainMenu(){
+        StartCoroutine(LoadNextLevel(0));
     }
 
     public void PlaySound(){

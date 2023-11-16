@@ -44,7 +44,6 @@ public class Book : MonoBehaviour
             Player.GetComponent<AbilityController>().hasBook = true;
             Player.GetComponent<Movement>().ani = Sprite.GetComponent<Animator>();
             Player.GetComponent<LitlleBuddy>().playerAni = Sprite.GetComponent<Animator>();
-            Player.GetComponent<AbilityController>().littleBuddy = true;
 
             LevelHandler levelHandler = door.GetComponent<LevelHandler>();
             if (levelHandler != null)

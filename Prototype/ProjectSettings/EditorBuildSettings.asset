@@ -36,6 +36,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Lvl 2-3.unity
     guid: d6a89d7c3395a8d4c937b8887303c120
   - enabled: 1
+    path: Assets/Scenes/DemoEnd.unity
+    guid: 6767274c8db5be84881246cce4d08015
+  - enabled: 1
     path: Assets/Scenes/Sanbox.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
