@@ -53,7 +53,7 @@ public class MetalPressurePlate : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D col)
     {
         
-        if (touchingObjectsCount == 0)
+        if (touchingObjectsCount == 0 && col.CompareTag("MetalBox"))
         {
             ani.SetBool("Pressure", true);
             TurnOn(col);

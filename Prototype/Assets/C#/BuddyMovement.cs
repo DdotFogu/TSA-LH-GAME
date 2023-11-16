@@ -52,6 +52,10 @@ public class BuddyMovement : MonoBehaviour
             }
         }
 
+        if(buddyState == "Fox" || buddyState == "Owl"){
+            SpriteRen.flipY = false;
+        }
+
         if (horizontalMovement == 0)
         {
             buddyAni.SetBool("Walking", false);

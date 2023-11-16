@@ -54,6 +54,7 @@ public class LitlleBuddy : MonoBehaviour
                 if(abilityOn == false){
                     abilityOn = true;
                     gameObject.GetComponent<Movement>().enabled = false;
+                    buddyPrefab.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                     ActiveBuddy();
 
                     if(firstActivation == false){
@@ -63,8 +64,8 @@ public class LitlleBuddy : MonoBehaviour
                 else{
                     FindObjectOfType<AudioManager>().Play("Ability");
                     abilityOn = false;
-                    buddyPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
                     gameObject.GetComponent<Movement>().enabled = true;
+                    buddyPrefab.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 }
             }
         }
