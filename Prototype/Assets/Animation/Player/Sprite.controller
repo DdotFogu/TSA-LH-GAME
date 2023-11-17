@@ -108,6 +108,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: AnimalState
     m_EventTreshold: 1
+  - m_ConditionMode: 2
+    m_ConditionEvent: Walking
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2316156059857968546}
   m_Solo: 0
@@ -952,7 +955,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 2960016086317498262}
-    m_Position: {x: 850, y: 360, z: 0}
+    m_Position: {x: 850, y: 350, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7908910859861312772}
     m_Position: {x: 850, y: 410, z: 0}

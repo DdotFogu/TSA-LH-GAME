@@ -1248,6 +1248,10 @@ PrefabInstance:
       propertyPath: invertGravity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3461801006312305000, guid: 6a792b171c15fdf4999136a57195cfd5, type: 3}
+      propertyPath: fallMultiplier
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3461801006312305011, guid: 6a792b171c15fdf4999136a57195cfd5, type: 3}
       propertyPath: m_Name
       value: Player

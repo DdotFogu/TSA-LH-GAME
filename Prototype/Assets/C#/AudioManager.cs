@@ -19,6 +19,7 @@ public class AudioManager : MonoBehaviour
     void Start(){
         Play("CaveAMB");
         Play("LavaAMB");
+        Play("Music");
     }
 
 

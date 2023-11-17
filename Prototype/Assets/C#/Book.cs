@@ -12,6 +12,7 @@ public class Book : MonoBehaviour
     public GameObject book;
     public GameObject NoBook;
     public GameObject door;
+    public GameObject exclamation;
 
     [Header("RayCast")]
     [SerializeField] float distance;
@@ -20,6 +21,7 @@ public class Book : MonoBehaviour
 
     void Start()
     {
+        exclamation.SetActive(true);
         interactIcon.SetActive(false);
     }
 
@@ -27,10 +29,17 @@ public class Book : MonoBehaviour
     {
         if (Physics2D.BoxCast(transform.position, boxSize, 0, transform.right, distance, Layer) && Player.GetComponent<AbilityController>().hasBook == false)
         {
+            exclamation.SetActive(false);
             interactIcon.SetActive(true);
         }
         else
         {
+            if(!Player.GetComponent<AbilityController>().hasBook){
+                exclamation.SetActive(true);
+            }
+            else{
+                exclamation.SetActive(false);
+            }
             interactIcon.SetActive(false);
         }
 

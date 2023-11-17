@@ -116,7 +116,7 @@ public class Movement : MonoBehaviour
     void MovementHandling()
     {
         rb.velocity = new Vector2(horizontalMovement * moveSpeed * Time.deltaTime, rb.velocity.y);
-        if (Input.GetKey(jumpKey) && isGrounded())
+        if (Input.GetKeyDown(jumpKey) && isGrounded())
         {
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
         }
