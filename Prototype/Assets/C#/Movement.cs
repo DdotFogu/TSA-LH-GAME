@@ -75,7 +75,7 @@ public class Movement : MonoBehaviour
         {
             ani.SetBool("Walking", true);
         }
-        if (Input.GetKeyDown(jumpKey) && (isGrounded() || coyoteTimer > 0))
+        if (Input.GetKey(jumpKey) && (isGrounded() || coyoteTimer > 0))
         {
             ani.SetTrigger("Jump");
             coyoteTimer = 0;
@@ -116,7 +116,7 @@ public class Movement : MonoBehaviour
     void MovementHandling()
     {
         rb.velocity = new Vector2(horizontalMovement * moveSpeed * Time.deltaTime, rb.velocity.y);
-        if (Input.GetKeyDown(jumpKey) && isGrounded())
+        if (Input.GetKey(jumpKey) && isGrounded())
         {
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
         }
