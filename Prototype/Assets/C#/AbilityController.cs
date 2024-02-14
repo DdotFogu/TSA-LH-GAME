@@ -11,12 +11,16 @@ public class AbilityController : MonoBehaviour
     [Header("Magic")]
     public bool telekenisis;
     public Image telekenisisIcon;
+    private bool trueTele;
     public bool stasis;
     public Image stasisIcon;
+    private bool trueStasis;
     public bool invertGravity;
     public Image GravityIcon;
+    private bool trueGravity;
     public bool littleBuddy;
     public Image BuddyIcon;
+    public bool trueBuddy;
 
     [Header("Conditions")]
     public bool carryingMetal;
@@ -24,6 +28,12 @@ public class AbilityController : MonoBehaviour
     [Header("Book")]
     public bool hasBook = true;
 
+    void Start(){
+        trueTele = telekenisis;
+        trueStasis = stasis;
+        trueGravity = invertGravity;
+        trueBuddy = littleBuddy;
+    }
     public void DisableAll(){
         telekenisis = false;
         stasis = false;
@@ -32,35 +42,43 @@ public class AbilityController : MonoBehaviour
     }
 
     public void EnableAll(){
-        telekenisis = true;
-        stasis = true;
-        invertGravity = true;
-        littleBuddy = true;
+        if(trueTele){
+            telekenisis = true;
+        }
+        if(trueStasis){
+            stasis = true;
+        }
+        if(trueGravity){
+            invertGravity = true;
+        }
+        if(trueBuddy){
+            littleBuddy = true;
+        }
     }
 
     private void Update(){
-        if(!telekenisis){
+        if(!telekenisis && telekenisisIcon != null){
             telekenisisIcon.color = transparent;
         }
-        else{
+        else if(telekenisisIcon != null){
             telekenisisIcon.color = full;
         }
-        if(!stasis){
+        if(!stasis && stasisIcon != null){
             stasisIcon.color = transparent;
         }
-        else{
+        else if(stasisIcon != null){
             stasisIcon.color = full;
         }
-        if(!invertGravity){
+        if(!invertGravity && GravityIcon != null){
             GravityIcon.color = transparent;
         }
-        else{
+        else if(GravityIcon != null){
             GravityIcon.color = full;
         }
-        if(!littleBuddy){
+        if(!littleBuddy && BuddyIcon != null){
             BuddyIcon.color = transparent;
         }
-        else{
+        else if(BuddyIcon != null){
             BuddyIcon.color = full;
         }
     }

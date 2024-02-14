@@ -209,7 +209,7 @@ public class BuddyMovement : MonoBehaviour
                 buddyState = "Owl";
             }
         }
-        else if ((hit1.collider != null && (hit1.collider.CompareTag("Ground") || hit1.collider.CompareTag("Moveable"))) || (hit2.collider != null && (hit2.collider.CompareTag("Ground") || hit2.collider.CompareTag("Moveable"))))
+        else if ((hit1.collider != null && (hit1.collider.CompareTag("Ground") || hit1.collider.CompareTag("Moveable") || hit1.collider.CompareTag("Nonmoveable"))) || (hit2.collider != null && (hit2.collider.CompareTag("Ground") || hit2.collider.CompareTag("Moveable") || hit2.collider.CompareTag("Nonmoveable"))))
         {
             playerAni.SetInteger("AnimalState", 2);
             buddyAni.SetInteger("AnimalState", 2);

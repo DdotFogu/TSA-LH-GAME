@@ -13,6 +13,7 @@ public class Book : MonoBehaviour
     public GameObject NoBook;
     public GameObject door;
     public GameObject exclamation;
+    public GameObject txt;
 
     [Header("RayCast")]
     [SerializeField] float distance;
@@ -46,6 +47,7 @@ public class Book : MonoBehaviour
         if (Input.GetKeyDown(interactKey) && Physics2D.BoxCast(transform.position, boxSize, 0, transform.right, distance, Layer) && Player.GetComponent<AbilityController>().hasBook == false)
         {
             FindObjectOfType<AudioManager>().Play("BookGrab");
+            txt.SetActive(true);
             Sprite.GetComponent<SpriteRenderer>().enabled = true;
             SpriteNoBook.GetComponent<SpriteRenderer>().enabled = false;
             NoBook.GetComponent<SpriteRenderer>().enabled = true;

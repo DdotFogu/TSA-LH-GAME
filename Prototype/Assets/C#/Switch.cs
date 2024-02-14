@@ -8,9 +8,11 @@ public class Switch : MonoBehaviour
     public GameObject door;
     public GameObject wall;
     public GameObject elevator;
+    public GameObject fan;
     public Animator ani;
 
     private bool canInteract = false;
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -32,6 +34,13 @@ public class Switch : MonoBehaviour
 
     private void Update()
     {
+        if(switchState){
+            ani.SetBool("On", true);
+        }
+        else{
+            ani.SetBool("On", false);
+        }
+
         if (canInteract && Input.GetKeyDown(interactKey))
         {
             FindObjectOfType<AudioManager>().Play("LeverFlick");
@@ -39,7 +48,6 @@ public class Switch : MonoBehaviour
             switchState = !switchState;
 
             if(switchState){
-                ani.SetBool("On", true);
                 if(door != null){
                     door.GetComponent<LevelHandler>().strenght++;
                 }
@@ -52,10 +60,13 @@ public class Switch : MonoBehaviour
                 if(elevator != null){
                     elevator.GetComponent<Elevator>().strenght++;
                 }
+
+                if(fan != null){
+                    fan.GetComponent<Wind>().strenght++;
+                }
             }
 
             if(!switchState){
-                ani.SetBool("On", false);
                 if(door != null){
                     door.GetComponent<LevelHandler>().strenght--;
                 }
@@ -67,6 +78,10 @@ public class Switch : MonoBehaviour
 
                 if(elevator != null){
                     elevator.GetComponent<Elevator>().strenght--;
+                }
+
+                if(fan != null){
+                    fan.GetComponent<Wind>().strenght--;
                 }
             }
         }

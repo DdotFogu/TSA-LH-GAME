@@ -33,9 +33,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Lvl 2-3.unity
     guid: d6a89d7c3395a8d4c937b8887303c120
   - enabled: 1
+    path: Assets/Scenes/Lvl 3-1.unity
+    guid: fc475c578e1be4c4fb783adae5e7573e
+  - enabled: 1
+    path: Assets/Scenes/Lvl 3-2.unity
+    guid: c0acd517e936bed45bbb885f682d883e
+  - enabled: 1
+    path: Assets/Scenes/Lvl End.unity
+    guid: 54a17ac951a3b0f46ad1e5c279a492bc
+  - enabled: 1
     path: Assets/Scenes/DemoEnd.unity
     guid: 6767274c8db5be84881246cce4d08015
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Sanbox.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

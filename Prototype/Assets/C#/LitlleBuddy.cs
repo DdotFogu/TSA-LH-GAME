@@ -77,15 +77,12 @@ public class LitlleBuddy : MonoBehaviour
 
     public void HandlePowers(){
         if(abilityOn == true){
-            ab.telekenisis = false;
-            ab.stasis = false;
-            ab.invertGravity = false;
+            ab.DisableAll();
+            ab.littleBuddy = true;
         }
         else{
             playerAni.SetInteger("AnimalState", 0);
-            ab.telekenisis = true;
-            ab.stasis = true;
-            ab.invertGravity = true;
+            ab.EnableAll();
         }
     }
 

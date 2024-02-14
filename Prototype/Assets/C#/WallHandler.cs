@@ -7,6 +7,7 @@ public class WallHandler : MonoBehaviour
 {
     public float strenght;
     public float quota;
+    public GameObject grid;
 
     private void Update()
     {
@@ -18,7 +19,7 @@ public class WallHandler : MonoBehaviour
         if (strenght >= quota)
         {
             DisableRenderer();
-            DisableCollider();
+            DisableCollider();  
         }
         else
         {
@@ -77,7 +78,7 @@ public class WallHandler : MonoBehaviour
 
     private bool TryGetComponent<T>(out T component) where T : Component
     {
-        component = GetComponent<T>();
+        component = grid.GetComponent<T>();
         return component != null;
     }
 }
