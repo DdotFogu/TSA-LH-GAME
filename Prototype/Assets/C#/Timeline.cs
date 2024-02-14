@@ -8,6 +8,7 @@ public class Timeline : MonoBehaviour
 
     public PlayableDirector timeline;
     private bool active = false;
+    public AbilityController ab;
     
     void Start(){
         timeline = GetComponent<PlayableDirector>();
@@ -19,6 +20,8 @@ public class Timeline : MonoBehaviour
             Debug.Log("Trigger");
             active = true;
             GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            ab.littleBuddy = true;
+            ab.trueBuddy = true;
             timeline.Play();
         }
     }
