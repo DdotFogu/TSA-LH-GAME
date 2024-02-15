@@ -1,9 +1,9 @@
 const cacheName = "DefaultCompany-Prototype-1.0";
 const contentToCache = [
-    "Build/OH WELL.loader.js",
-    "Build/OH WELL.framework.js",
-    "Build/OH WELL.data",
-    "Build/OH WELL.wasm",
+    "Build/test 4.loader.js",
+    "Build/test 4.framework.js",
+    "Build/test 4.data",
+    "Build/test 4.wasm",
     "TemplateData/style.css"
 
 ];
