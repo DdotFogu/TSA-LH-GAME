@@ -20,10 +20,8 @@ public class Timeline : MonoBehaviour
             Debug.Log("Trigger");
             active = true;
             GameObject.Find("Player").GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-            if(ab != null){
-                ab.littleBuddy = true;
-                ab.trueBuddy = true;
-            }
+            ab.littleBuddy = true;
+            ab.trueBuddy = true;
             timeline.Play();
         }
     }
